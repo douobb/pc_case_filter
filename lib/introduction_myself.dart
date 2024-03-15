@@ -26,7 +26,7 @@ class IntroductionMyself extends StatelessWidget {
                     children: [
                       Text("關於我",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(103, 80, 164, 1),),),
                       Divider(),
-                      Text("我是douobb，目前就讀於交大資工，正在學習如何使用flutter建立網站以及APP，希望這一個網站對正在挑選機殼的你有幫助(❁´◡`❁)",style: TextStyle(fontSize: 18, height: 1.5),),
+                      Text("我是douobb，是一位就讀於交大資工的flutter菜鳥，正在學習如何使用flutter建立網站以及APP，希望這一個網站對正在挑選機殼的你有幫助(❁´◡`❁)",style: TextStyle(fontSize: 18, height: 1.5),),
                     ],
                   ),
                 )
