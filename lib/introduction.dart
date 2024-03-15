@@ -12,7 +12,7 @@ class Introduction extends StatefulWidget {
 class _IntroductionPageState extends State<Introduction> {
   final List<Tab> myTabs = <Tab>[
     const Tab(child:Text('功能介紹',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
-    const Tab(child:Text('關於我',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+    const Tab(child:Text('關於',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
   ];
   final pages = [const IntroductionSite(), const IntroductionMyself()];
   @override
