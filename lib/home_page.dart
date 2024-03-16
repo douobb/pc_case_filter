@@ -153,6 +153,17 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> initCaseData() async {
     final ref = FirebaseDatabase.instance.ref();
+    ref.onChildChanged.listen((event) async {
+      Fluttertoast.showToast(
+          msg: "資料更新中，請在3分鐘後刷新網頁以取得最新資料",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          fontSize: 14.0,
+          webBgColor: "linear-gradient(to right, #9a89c2, #9a89c2)",
+          webPosition: "center"
+      );
+    });
     final snapshot = await ref.get();
     allCase = pcCaseFromJson(jsonEncode(snapshot.value));
   }
