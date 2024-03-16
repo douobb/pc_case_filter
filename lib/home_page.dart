@@ -152,17 +152,24 @@ class _HomePageState extends State<HomePage> {
   FirebaseDatabase database = FirebaseDatabase.instance;
 
   Future<void> initCaseData() async {
-    final ref = FirebaseDatabase.instance.ref();
-    ref.onChildChanged.listen((event) async {
-      Fluttertoast.showToast(
-          msg: "資料更新中，請在3分鐘後刷新網頁以取得最新資料",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          timeInSecForIosWeb: 1,
-          fontSize: 14.0,
-          webBgColor: "linear-gradient(to right, #9a89c2, #9a89c2)",
-          webPosition: "center"
-      );
+    var ref = FirebaseDatabase.instance.ref();
+    bool firstChange = true;
+    var  lastChangeTime = DateTime.now().add(const Duration(minutes: -3));
+    ref.onValue.listen((event) async {
+      if(!firstChange && DateTime.now().difference(lastChangeTime) > const Duration(minutes: 3)){
+        Fluttertoast.showToast(
+            msg: "資料更新中，請在3分鐘後刷新網頁以取得最新資料",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 10,
+            fontSize: 14.0,
+            webBgColor: "linear-gradient(to right, #9a89c2, #9a89c2)",
+            webPosition: "center"
+        );
+        lastChangeTime = DateTime.now();
+      }else{
+        firstChange = false;
+      }
     });
     final snapshot = await ref.get();
     allCase = pcCaseFromJson(jsonEncode(snapshot.value));
