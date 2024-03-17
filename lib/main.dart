@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title:'機殼篩選',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
           scrollbarTheme: ScrollbarThemeData(
