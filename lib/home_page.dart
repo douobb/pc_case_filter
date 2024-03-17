@@ -411,7 +411,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 0,
-          title: const Text('機殼篩選',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          title: const Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
           actions: [
             Builder(
               builder: (context) => IconButton(

@@ -21,7 +21,7 @@ class _IntroductionPageState extends State<Introduction> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
-        title: const Text('網站簡介',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: const Text('網站簡介',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         actions: [
           Builder(
             builder: (context) => IconButton(
