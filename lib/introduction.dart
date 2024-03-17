@@ -40,7 +40,6 @@ class _IntroductionPageState extends State<Introduction> {
       body: Align(
         alignment: Alignment.topCenter,
         child: SizedBox(
-          width: 1000,
           child: DefaultTabController(
             length: myTabs.length,
             child: Scaffold(
@@ -48,12 +47,17 @@ class _IntroductionPageState extends State<Introduction> {
                 preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: Material(
                     color: Colors.white,
-                    child: TabBar(
-                      dividerColor: Colors.black12,
-                      indicatorColor: const Color.fromRGBO(103, 80, 164, 1),
-                      unselectedLabelColor: Colors.black45,
-                      labelColor: const Color.fromRGBO(103, 80, 164, 1),
-                      tabs: myTabs,
+                    child: Center(
+                      child: SizedBox(
+                        width: 1000,
+                        child: TabBar(
+                          dividerColor: Colors.black12,
+                          indicatorColor: const Color.fromRGBO(103, 80, 164, 1),
+                          unselectedLabelColor: Colors.black45,
+                          labelColor: const Color.fromRGBO(103, 80, 164, 1),
+                          tabs: myTabs,
+                        ),
+                      ),
                     )
                 ),
               ),
