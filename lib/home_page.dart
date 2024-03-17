@@ -158,12 +158,12 @@ class _HomePageState extends State<HomePage> {
     ref.onValue.listen((event) async {
       if(!firstChange && DateTime.now().difference(lastChangeTime) > const Duration(minutes: 3)){
         Fluttertoast.showToast(
-            msg: "資料更新中，請在3分鐘後刷新網頁以取得最新資料",
+            msg: "機殼資料更新中，請在約3分鐘後刷新網頁以取得最新資料",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.TOP,
-            timeInSecForIosWeb: 10,
+            timeInSecForIosWeb: 5,
             fontSize: 14.0,
-            webBgColor: "linear-gradient(to right, #9a89c2, #9a89c2)",
+            webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
             webPosition: "center"
         );
         lastChangeTime = DateTime.now();
