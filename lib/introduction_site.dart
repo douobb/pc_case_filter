@@ -18,7 +18,7 @@ class IntroductionSite extends StatelessWidget {
               const Text("本網站建立原因是因為作者發現原價屋的機殼總覽網頁雖然包含了許多機殼，但是在搜索篩選方面並不方便，"
                   "因此希望透過這個網站能讓大家有更好的方法可以去尋找到適合自己需求的機殼。\n\n為了保持資料為最新狀態，"
                   "本網站會從每日的0時開始，每4小時進行一次更新(因為github actions定時可能會有延遲，實際時間可能會晚10~20分鐘)，"
-                  "更新資料時會導致網頁資料被刪除，因此請稍待約三分鐘之後重新載入頁面以取得最新資料。\n",style: TextStyle(fontSize: 18, height: 1.5),),
+                  "更新資料時會導致網頁資料被刪除，因此需要在約三分鐘之後重新載入頁面以取得最新資料。\n",style: TextStyle(fontSize: 18, height: 1.5),),
               const Text("* 所有資料均來自「原價屋CASE機殼(+電源)總覽」網頁，實際資料請以該網站為準",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
               const SizedBox(height: 15,),
               const Text("功能",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color.fromRGBO(103, 80, 164, 1),),),
