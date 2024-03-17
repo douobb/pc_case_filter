@@ -17,7 +17,7 @@ class IntroductionMyself extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ClipOval(
-                  child: Image.network('https://avatars.githubusercontent.com/u/143181701?v=4',width: 150,),
+                  child: Image.network('https://avatars.githubusercontent.com/u/143181701?v=4',width: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),),
                 ),
                 const SizedBox(width: 20,),
                 const Expanded(
