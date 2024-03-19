@@ -29,6 +29,8 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+
   <title>機殼篩選</title>
   <link rel="manifest" href="manifest.json">
 
@@ -54,6 +56,24 @@
             });
         }
       });
+    });
+
+  </script>
+  <div class="loader-wrapper">
+    <div class="col" style="text-align:center">
+      <span style="color:#6750A4;font-size: 32px">網頁載入中...</span>
+      <div class="wrap" style="margin:20px">
+        <span style="color:#6750A4;font-size: 24px">(初次載入用時較久 請稍後)</span>
+      </div>
+      <div class="wrap" style="margin: 50px">
+        <span class="loader"><span class="loader-inner"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(window).on("load",function(){
+      $(".loader-wrapper").fadeOut("slow");
     });
   </script>
 </body>
