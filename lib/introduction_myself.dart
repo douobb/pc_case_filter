@@ -75,7 +75,7 @@ class IntroductionMyself extends StatelessWidget {
                     children: [
                       Text("資料儲存",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(103, 80, 164, 1),),),
                       Divider(indent: 30, endIndent: 30,),
-                      Text("Python中整理為數個List，之後上傳到Firebase的資料庫保存。",style: TextStyle(fontSize: 16, height: 1.5),),
+                      Text("在Python中整理資料，之後上傳到Firebase的資料庫保存。",style: TextStyle(fontSize: 16, height: 1.5),),
                     ],
                   )
               ),
