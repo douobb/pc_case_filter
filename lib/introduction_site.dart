@@ -30,8 +30,6 @@ class IntroductionSite extends StatelessWidget {
               const Divider(),
               const Text("點擊右上角的漏斗圖示即可進入篩選介面，篩選介面的右上角有「套用」以及「初始化」兩個按鈕，功能分別為底下搜索條件的使用以及清除，"
                   "當選擇好自己的搜索條件之後別忘了點擊套用按鈕。而底下依序是搜索、排序以及篩選的功能，只要點擊想要使用的功能就可以進行輸入以及選擇。",style: TextStyle(fontSize: 18, height: 1.5),),
-              const SizedBox(height: 10,),
-              Image.asset("assert/introduction_open_filter.gif",width: (MediaQuery.of(context).size.width > 1000? 960 : MediaQuery.of(context).size.width-40),),
               const SizedBox(height: 15,),
               const Text("搜索功能",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color.fromRGBO(103, 80, 164, 1),),),
               const Divider(),
