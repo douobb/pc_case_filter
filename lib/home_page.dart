@@ -314,83 +314,85 @@ class _HomePageState extends State<HomePage> {
     List<Widget> list = [];
     for (int i = 0; i < cases.length; i++) {
       list.add(SizedBox(
-        child: Card(
-          color: Colors.white,
-          surfaceTintColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          margin: const EdgeInsets.all(10),
-          elevation: 10,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: (MediaQuery.of(context).size.width < 500? (MediaQuery.of(context).size.width)/3 : 160),
-                margin: const EdgeInsets.all(5),
-                child: AspectRatio(
-                  aspectRatio: 5 / 9,
-                  child: Image.network(
-                    cases[i].images,
-                    fit: BoxFit.contain,
+        child: SelectionArea(
+          child: Card(
+            color: Colors.white,
+            surfaceTintColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            margin: const EdgeInsets.all(10),
+            elevation: 10,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: (MediaQuery.of(context).size.width < 500? (MediaQuery.of(context).size.width)/3 : 160),
+                  margin: const EdgeInsets.all(5),
+                  child: AspectRatio(
+                    aspectRatio: 5 / 9,
+                    child: Image.network(
+                      cases[i].images,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListTile(
-                      title: Text(
-                        cases[i].titles,
-                        style: const TextStyle(fontSize: 16),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        title: Text(
+                          cases[i].titles,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        subtitle: Text(
+                          cases[i].detail,
+                          style: const TextStyle(fontSize: 14),
+                        ),
                       ),
-                      subtitle: Text(
-                        cases[i].detail,
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 300,
-                      child: ListTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("價格：${cases[i].price}", style: const TextStyle(fontSize: 16),),
-                              SizedBox(
-                                child: (cases[i].links == "無" ? null
-                                    : (MediaQuery.of(context).size.width < 500 ?
+                      SizedBox(
+                        width: 300,
+                        child: ListTile(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("價格：${cases[i].price}", style: const TextStyle(fontSize: 16),),
                                 SizedBox(
-                                  child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(padding: EdgeInsets.zero,),
-                                    child: const FaIcon(FontAwesomeIcons.boxOpen),
-                                    onPressed: () {
-                                      launchUrl(Uri.parse(cases[i].links), mode:LaunchMode.externalApplication);
-                                    },
-                                  ),
-                                ) : SizedBox(
-                                  child: OutlinedButton.icon(
-                                    label: const Text("開箱討論"),
-                                    icon: const FaIcon(FontAwesomeIcons.boxOpen),
-                                    onPressed: () {
-                                      launchUrl(Uri.parse(cases[i].links), mode: LaunchMode.externalApplication);
-                                    },
-                                  ),
-                                ))),
-                              )
-                            ],
-                          )
+                                  child: (cases[i].links == "無" ? null
+                                      : (MediaQuery.of(context).size.width < 500 ?
+                                  SizedBox(
+                                    child: OutlinedButton(
+                                      style: OutlinedButton.styleFrom(padding: EdgeInsets.zero,),
+                                      child: const FaIcon(FontAwesomeIcons.boxOpen),
+                                      onPressed: () {
+                                        launchUrl(Uri.parse(cases[i].links), mode:LaunchMode.externalApplication);
+                                      },
+                                    ),
+                                  ) : SizedBox(
+                                    child: OutlinedButton.icon(
+                                      label: const Text("開箱討論"),
+                                      icon: const FaIcon(FontAwesomeIcons.boxOpen),
+                                      onPressed: () {
+                                        launchUrl(Uri.parse(cases[i].links), mode: LaunchMode.externalApplication);
+                                      },
+                                    ),
+                                  ))),
+                                )
+                              ],
+                            )
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: (cases[i].gift == "無"? null : Text( "* ${cases[i].gift}",style: const TextStyle(fontSize: 12),)),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: (cases[i].gift == "無"? null : Text( "* ${cases[i].gift}",style: const TextStyle(fontSize: 12),)),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+        )
       ));
     }
     return list;
@@ -447,13 +449,11 @@ class _HomePageState extends State<HomePage> {
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: SelectionArea(
-              child: ResponsiveGridList(
-                controller: controller,
-                desiredItemWidth: 500,
-                children: initCaseCard(filterCase),
-              ),
-            )
+            child: ResponsiveGridList(
+              controller: controller,
+              desiredItemWidth: 500,
+              children: initCaseCard(filterCase),
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
