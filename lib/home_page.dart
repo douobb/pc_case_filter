@@ -438,17 +438,22 @@ class _HomePageState extends State<HomePage> {
           toolbarHeight: 60,
           backgroundColor: const Color.fromARGB(255, 230, 225, 229),
         ),
-        endDrawer: FilterDrawer(applyFilter:applyFilter, initFilter:initFilter),
+        endDrawer: FilterDrawer(
+            applyFilter:applyFilter,
+            initFilter:initFilter
+        ),
         body: Align(
           child: Container(
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: ResponsiveGridList(
-              controller: controller,
-              desiredItemWidth: 500,
-              children: initCaseCard(filterCase),
-            ),
+            child: SelectionArea(
+              child: ResponsiveGridList(
+                controller: controller,
+                desiredItemWidth: 500,
+                children: initCaseCard(filterCase),
+              ),
+            )
           ),
         ),
         floatingActionButton: FloatingActionButton(

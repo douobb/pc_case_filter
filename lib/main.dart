@@ -28,9 +28,7 @@ class MyApp extends StatelessWidget {
           )
       ),
       debugShowCheckedModeBanner: false,
-      home: const SelectionArea(
-        child: HomePage(),
-      )
+      home:  const HomePage(),
     );
   }
 }
