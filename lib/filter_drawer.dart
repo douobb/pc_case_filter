@@ -41,6 +41,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
     return Drawer(
         child: Stack(
           children: [
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+            ),
             SingleChildScrollView(
               padding: const EdgeInsets.only(top: 70),
               child: Container(
@@ -166,7 +171,6 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   toolbarHeight: 60,
                   backgroundColor: const Color.fromARGB(255, 230, 225, 229),
                 ),
-                backgroundColor: Colors.transparent,
               ),
             )
           ],

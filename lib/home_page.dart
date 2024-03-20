@@ -315,6 +315,7 @@ class _HomePageState extends State<HomePage> {
     for (int i = 0; i < cases.length; i++) {
       list.add(SizedBox(
         child: Card(
+          color: Colors.white,
           surfaceTintColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           margin: const EdgeInsets.all(10),
@@ -439,7 +440,10 @@ class _HomePageState extends State<HomePage> {
         ),
         endDrawer: FilterDrawer(applyFilter:applyFilter, initFilter:initFilter),
         body: Align(
-          child: SizedBox(
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
             child: ResponsiveGridList(
               controller: controller,
               desiredItemWidth: 500,
