@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
+    isDarkMode = brightness == Brightness.dark;
     return MaterialApp(
       title:'機殼篩選',
       theme: ThemeData(

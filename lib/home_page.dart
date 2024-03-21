@@ -20,6 +20,7 @@ import 'drawer_others.dart';
 import 'drawer_sidePanel.dart';
 import 'drawer_volume.dart';
 import 'drawer_gpu&cpu.dart';
+import 'main.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 List<PcCase> pcCaseFromJson(String str) => Map.from(json.decode(str)).map((k, v) => MapEntry<String, PcCase>(k, PcCase.fromJson(v))).entries.map((e) => e.value).toList();
@@ -329,10 +330,17 @@ class _HomePageState extends State<HomePage> {
                   margin: const EdgeInsets.all(5),
                   child: AspectRatio(
                     aspectRatio: 5 / 9,
-                    child: Image.network(
-                      cases[i].images,
-                      fit: BoxFit.contain,
-                    ),
+                    child: Stack(
+                      children: [
+                        Image.network(
+                          cases[i].images,
+                          fit: BoxFit.contain,
+                        ),
+                        Container(
+                          color: Colors.black.withOpacity((isDarkMode? 0.4:0)),
+                        ),
+                      ],
+                    )
                   ),
                 ),
                 Expanded(
