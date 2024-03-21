@@ -26,13 +26,17 @@ class _DrawerVolumeState extends State<DrawerVolume> {
 
   @override
   Widget build(BuildContext context) {
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+        collapsedIconColor: textColor,
+        iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: const Text("體積",style: TextStyle(fontSize: 18),),
+        title: Text("體積",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,11 +51,12 @@ class _DrawerVolumeState extends State<DrawerVolume> {
                     FilteringTextInputFormatter.allow(RegExp("[0-9.]"))
                   ],
                   textAlignVertical: TextAlignVertical.center,
-                  style: const TextStyle(fontSize: 14,),
-                  decoration: const InputDecoration(
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
                     hintText: "最小值",
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
                   ),
                 ),
               ),
@@ -70,11 +75,12 @@ class _DrawerVolumeState extends State<DrawerVolume> {
                     FilteringTextInputFormatter.allow(RegExp("[0-9.]"))
                   ],
                   textAlignVertical: TextAlignVertical.center,
-                  style: const TextStyle(fontSize: 14,),
-                  decoration: const InputDecoration(
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
                     hintText: "最大值",
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
                   ),
                 ),
               )

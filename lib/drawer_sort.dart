@@ -11,13 +11,17 @@ class DrawerSort extends StatefulWidget {
 }
 
 class _DrawerSortState extends State<DrawerSort> {
-  List<Widget> _initSortBottom(List<bool> isSelected, List<String> sortMethod) {
+  List<Widget> _initSortBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> sortMethod) {
     List<Widget> list = [];
     for(int i = 0; i < 2; i++){
       list.add(
           SizedBox(
             height: 40,
             child: ToggleButtons(
+              color: textColor,
+              borderColor: textColor,
+              selectedColor: primaryColor,
+              fillColor: textColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -56,11 +60,13 @@ class _DrawerSortState extends State<DrawerSort> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
     return ListTile(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("排序",style: TextStyle(fontSize: 18),),
+          Text("排序",style: TextStyle(fontSize: 18, color: textColor),),
           SizedBox(
             height: 40,
             child: IconButton(
@@ -73,12 +79,12 @@ class _DrawerSortState extends State<DrawerSort> {
                     isSelectedSortMethod[2] = !isSelectedSortMethod[2];
                   });
                 },
-                icon: ((isSelectedSortMethod[2])? const Icon(Icons.arrow_upward) : const Icon(Icons.arrow_downward))),
+                icon: ((isSelectedSortMethod[2])? Icon(Icons.arrow_upward, color: textColor) : Icon(Icons.arrow_downward, color: textColor))),
           ),
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initSortBottom(isSelectedSortMethod,sortMethod),
+            children: _initSortBottom(primaryColor, textColor, isSelectedSortMethod,sortMethod),
           ),
           SizedBox(
               height: 40,
@@ -92,7 +98,7 @@ class _DrawerSortState extends State<DrawerSort> {
                     isSelectedSortMethod[1] = false;
                   });
                 },
-                icon: const Icon(Icons.close),
+                icon: Icon(Icons.close, color: textColor),
               )
           ),
         ],

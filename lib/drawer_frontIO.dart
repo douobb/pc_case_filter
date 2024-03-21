@@ -12,13 +12,17 @@ class DrawerFrontIO extends StatefulWidget {
 }
 
 class _DrawerFrontIOState extends State<DrawerFrontIO> {
-  List<Widget> _initFrontIOBottom(List<bool> isSelected, List<String> frontIO) {
+  List<Widget> _initFrontIOBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> frontIO) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
           SizedBox(
             height: 40,
             child: ToggleButtons(
+              color: textColor,
+              borderColor: textColor,
+              selectedColor: primaryColor,
+              fillColor: textColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -55,18 +59,23 @@ class _DrawerFrontIOState extends State<DrawerFrontIO> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+        collapsedIconColor: textColor,
+        iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: const Text("I/O支援",style: TextStyle(fontSize: 18),),
+        title: Text("I/O支援",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initFrontIOBottom(isSelectedFrontIO,frontIO),
+            children: _initFrontIOBottom(primaryColor, textColor, isSelectedFrontIO,frontIO),
           )
         ],
       ),

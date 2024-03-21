@@ -310,14 +310,14 @@ class _HomePageState extends State<HomePage> {
     return list;
   }
 
-  List<Widget> initCaseCard(List<PcCase> cases) {
+  List<Widget> initCaseCard(Color primaryColor, Color textColor, Color buttonColor, List<PcCase> cases) {
     List<Widget> list = [];
     for (int i = 0; i < cases.length; i++) {
       list.add(SizedBox(
         child: SelectionArea(
           child: Card(
-            color: Colors.white,
-            surfaceTintColor: Colors.white,
+            color: primaryColor,
+            surfaceTintColor: primaryColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             margin: const EdgeInsets.all(10),
             elevation: 10,
@@ -343,11 +343,11 @@ class _HomePageState extends State<HomePage> {
                       ListTile(
                         title: Text(
                           cases[i].titles,
-                          style: const TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: textColor),
                         ),
                         subtitle: Text(
                           cases[i].detail,
-                          style: const TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 14, color: textColor),
                         ),
                       ),
                       SizedBox(
@@ -356,7 +356,7 @@ class _HomePageState extends State<HomePage> {
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("價格：${cases[i].price}", style: const TextStyle(fontSize: 16),),
+                                Text("價格：${cases[i].price}", style: TextStyle(fontSize: 16, color: textColor),),
                                 SizedBox(
                                   child: (cases[i].links == "無" ? null
                                       : (MediaQuery.of(context).size.width < 500 ?
@@ -370,8 +370,8 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ) : SizedBox(
                                     child: OutlinedButton.icon(
-                                      label: const Text("開箱討論"),
-                                      icon: const FaIcon(FontAwesomeIcons.boxOpen),
+                                      label: Text("開箱討論", style: TextStyle(color: buttonColor),),
+                                      icon: FaIcon(FontAwesomeIcons.boxOpen, color: buttonColor,),
                                       onPressed: () {
                                         launchUrl(Uri.parse(cases[i].links), mode: LaunchMode.externalApplication);
                                       },
@@ -384,7 +384,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: (cases[i].gift == "無"? null : Text( "* ${cases[i].gift}",style: const TextStyle(fontSize: 12),)),
+                        child: (cases[i].gift == "無"? null : Text( "* ${cases[i].gift}",style: TextStyle(fontSize: 12, color: textColor),)),
                       )
                     ],
                   ),
@@ -411,14 +411,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color cardColor = Theme.of(context).cardColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 0,
-          title: const Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          title: Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor)),
           actions: [
             Builder(
               builder: (context) => IconButton(
-                icon: const Icon(Icons.filter_alt_outlined),
+                icon: Icon(Icons.filter_alt_outlined, color: textColor),
                 onPressed: (){
                   Scaffold.of(context).openEndDrawer();
                 },
@@ -428,7 +432,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
-                icon: const Icon(Icons.info_outline),
+                icon: Icon(Icons.info_outline, color: textColor),
                 onPressed: (){
                   Navigator.push(context,EnterExitRoute(exitPage: const HomePage(), enterPage: const Introduction()));
                 },
@@ -437,8 +441,15 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(width: 15,)
           ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: const Color.fromRGBO(187, 189, 183, 1),
+              height: 3.0,
+            ),
+          ),
           toolbarHeight: 60,
-          backgroundColor: const Color.fromARGB(255, 230, 225, 229),
+          backgroundColor: primaryColor,
         ),
         endDrawer: FilterDrawer(
             applyFilter:applyFilter,
@@ -446,23 +457,24 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Align(
           child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: primaryColor,
             ),
             child: ResponsiveGridList(
               controller: controller,
               desiredItemWidth: 500,
-              children: initCaseCard(filterCase),
+              children: initCaseCard(cardColor, textColor, buttonColor, filterCase),
             ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: textColor,
           shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
           onPressed: () {
             controller.jumpTo(0);
           },
           tooltip: "移至頂端",
-          child: const Icon(Icons.arrow_upward),
+          child: Icon(Icons.arrow_upward, color: primaryColor),
         )
     );
   }

@@ -12,13 +12,17 @@ class DrawerLiquidCooling extends StatefulWidget {
 }
 
 class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
-  List<Widget> _initLiquidCoolingBottom(List<bool> isSelected, List<String> liquidCooling) {
+  List<Widget> _initLiquidCoolingBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> liquidCooling) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
           SizedBox(
             height: 40,
             child: ToggleButtons(
+              color: textColor,
+              borderColor: textColor,
+              selectedColor: primaryColor,
+              fillColor: textColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -55,18 +59,23 @@ class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+        collapsedIconColor: textColor,
+        iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: const Text("水冷支援",style: TextStyle(fontSize: 18),),
+        title: Text("水冷支援",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initLiquidCoolingBottom(isSelectedLiquidCooling,liquidCooling),
+            children: _initLiquidCoolingBottom(primaryColor, textColor, isSelectedLiquidCooling,liquidCooling),
           )
         ],
       ),

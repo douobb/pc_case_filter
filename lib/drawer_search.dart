@@ -23,11 +23,12 @@ class _DrawerSearchState extends State<DrawerSearch> {
 
   @override
   Widget build(BuildContext context) {
+    final Color textColor = Theme.of(context).primaryColorDark;
     return ListTile(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("搜尋",style: TextStyle(fontSize: 18),),
+          Text("搜尋",style: TextStyle(fontSize: 18, color: textColor),),
           SizedBox(
             width: 100,
             height: 50,
@@ -35,11 +36,12 @@ class _DrawerSearchState extends State<DrawerSearch> {
               controller: controllerSearchWord,
               keyboardType: TextInputType.number,
               textAlignVertical: TextAlignVertical.center,
-              style: const TextStyle(fontSize: 14,),
-              decoration: const InputDecoration(
+              style: TextStyle(fontSize: 14, color: textColor),
+              decoration: InputDecoration(
                 hintText: "搜索文字",
-                enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
+                hintStyle:TextStyle(color: textColor),
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
               ),
             ),
           ),
@@ -54,7 +56,7 @@ class _DrawerSearchState extends State<DrawerSearch> {
                     controllerSearchWord.text = '';
                   });
                 },
-                icon: const Icon(Icons.close),
+                icon: Icon(Icons.close, color: textColor),
               )
           ),
         ],

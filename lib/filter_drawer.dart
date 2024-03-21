@@ -38,12 +38,15 @@ class _FilterDrawerState extends State<FilterDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Drawer(
         child: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: primaryColor,
               ),
             ),
             SingleChildScrollView(
@@ -75,10 +78,10 @@ class _FilterDrawerState extends State<FilterDrawer> {
               child: Scaffold(
                 appBar: AppBar(
                   scrolledUnderElevation: 0,
-                  title:const Row(
+                  title: Row(
                     children: [
-                      SizedBox(width: 10,),
-                      Text("篩選",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                      const SizedBox(width: 10,),
+                      Text("篩選",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
                     ],
                   ),
                   actions: [
@@ -86,7 +89,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 140, 122, 186)),
+                        backgroundColor: MaterialStateProperty.all(buttonColor),
                       ),
                       onPressed: (){
                         searchWord = controllerSearchWord.text;
@@ -151,25 +154,32 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         widget.applyFilter();
                         Navigator.pop(context);
                       },
-                      child: const Text("套用",style: TextStyle(fontSize: 16, color: Colors.white),),
+                      child: Text("套用",style: TextStyle(fontSize: 16, color: primaryColor),),
                     ),
                     const SizedBox(width: 10,),
                     ElevatedButton(
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 140, 122, 186)),
+                        backgroundColor: MaterialStateProperty.all(buttonColor),
                       ),
                       onPressed: (){
                         widget.initFilter();
                         Navigator.pop(context);
                       },
-                      child: const Text("初始化",style: TextStyle(fontSize: 16, color: Colors.white),),
+                      child: Text("初始化",style: TextStyle(fontSize: 16, color: primaryColor),),
                     ),
                     const SizedBox(width: 10,),
                   ],
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(4.0),
+                    child: Container(
+                      color: const Color.fromRGBO(187, 189, 183, 1),
+                      height: 3.0,
+                    ),
+                  ),
                   toolbarHeight: 60,
-                  backgroundColor: const Color.fromARGB(255, 230, 225, 229),
+                  backgroundColor: primaryColor,
                 ),
               ),
             )

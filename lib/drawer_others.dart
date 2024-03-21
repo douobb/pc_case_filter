@@ -27,18 +27,26 @@ class _DrawerOthersState extends State<DrawerOthers> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+        collapsedIconColor: textColor,
+        iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-        title: const Text("其他",style: TextStyle(fontSize: 18),),
+        title: Text("其他",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Row(
             children: [
-              const Text("僅允許ATX電供",style: TextStyle(fontSize: 18),),
+              Text("僅允許ATX電供",style: TextStyle(fontSize: 18, color: textColor),),
               Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
                   value: isATXPowerOnly,
                   onChanged: (value){
                     setState(() {
@@ -51,8 +59,11 @@ class _DrawerOthersState extends State<DrawerOthers> {
           const SizedBox(height: 10,),
           Row(
             children: [
-              const Text("內附風扇",style: TextStyle(fontSize: 18),),
+              Text("內附風扇",style: TextStyle(fontSize: 18, color: textColor),),
               Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
                   value: isFansInside,
                   onChanged: (value){
                     setState(() {
@@ -65,8 +76,11 @@ class _DrawerOthersState extends State<DrawerOthers> {
           const SizedBox(height: 10,),
           Row(
             children: [
-              const Text("內附控制器&集線器",style: TextStyle(fontSize: 18),),
+              Text("內附控制器&集線器",style: TextStyle(fontSize: 18, color: textColor),),
               Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
                   value: isFanHubInside,
                   onChanged: (value){
                     setState(() {
@@ -79,8 +93,11 @@ class _DrawerOthersState extends State<DrawerOthers> {
           const SizedBox(height: 10,),
           Row(
             children: [
-              const Text("支援顯卡垂直安裝",style: TextStyle(fontSize: 18),),
+              Text("支援顯卡垂直安裝",style: TextStyle(fontSize: 18, color: textColor),),
               Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
                   value: isAllowVerticalGPU,
                   onChanged: (value){
                     setState(() {

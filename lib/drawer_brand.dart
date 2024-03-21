@@ -51,13 +51,17 @@ class DrawerBrand extends StatefulWidget {
 
 class _DrawerBrandState extends State<DrawerBrand> {
   bool isSelectAllBrand = true;
-  List<Widget> _initBrandsBottom(List<bool> isSelected, List<String> brands) {
+  List<Widget> _initBrandsBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> brands) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
           SizedBox(
             height: 40,
             child: ToggleButtons(
+              color: textColor,
+              borderColor: textColor,
+              selectedColor: primaryColor,
+              fillColor: textColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -95,15 +99,23 @@ class _DrawerBrandState extends State<DrawerBrand> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+        collapsedIconColor: textColor,
+        iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: const Text("品牌",style: TextStyle(fontSize: 18),),
+        title: Text("品牌",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Checkbox(
+              side: BorderSide(color: textColor),
+              activeColor: buttonColor,
+              checkColor: primaryColor,
               value: isSelectAllBrand,
               onChanged: (value){
                 setState(() {
@@ -118,7 +130,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initBrandsBottom(isSelectedBrand,brandNames),
+            children: _initBrandsBottom(primaryColor, textColor, isSelectedBrand, brandNames),
           )
         ],
       ),

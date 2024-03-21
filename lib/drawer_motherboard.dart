@@ -12,13 +12,17 @@ class DrawerMotherBoard extends StatefulWidget {
 }
 
 class _DrawerMotherBoardState extends State<DrawerMotherBoard> {
-  List<Widget> _initMotherBoardBottom(List<bool> isSelected, List<String> motherBoardSize) {
+  List<Widget> _initMotherBoardBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> motherBoardSize) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
           SizedBox(
             height: 40,
             child: ToggleButtons(
+              color: textColor,
+              borderColor: textColor,
+              selectedColor: primaryColor,
+              fillColor: textColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -55,18 +59,23 @@ class _DrawerMotherBoardState extends State<DrawerMotherBoard> {
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color textColor = Theme.of(context).primaryColorDark;
+    final Color buttonColor = Theme.of(context).primaryColorLight;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
+      collapsedIconColor: textColor,
+      iconColor: buttonColor,
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: const Text("主板",style: TextStyle(fontSize: 18),),
+        title: Text("主板",style: TextStyle(fontSize: 18, color: textColor),),
         children: [
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initMotherBoardBottom(isSelectedMotherBoard,motherBoardSize),
+            children: _initMotherBoardBottom(primaryColor, textColor, isSelectedMotherBoard,motherBoardSize),
           )
         ],
       ),

@@ -11,15 +11,22 @@ void main() async {
   runApp(const MyApp());
 }
 
+bool isDarkMode = false;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
     return MaterialApp(
       title:'機殼篩選',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+          cardColor: (isDarkMode? const Color.fromRGBO(43, 45, 48, 1):Colors.white),
+          primaryColor: (isDarkMode? const Color.fromRGBO(30, 31, 34, 1):const Color.fromARGB(255, 240, 240, 240)),
+          primaryColorDark: (isDarkMode? const Color.fromRGBO(187, 189, 183, 1):const Color.fromRGBO(43, 45, 48, 1)),
+          primaryColorLight: (isDarkMode? Colors.white:const Color.fromRGBO(103, 80, 164, 1)),
+          focusColor: (isDarkMode? Colors.grey:const Color.fromRGBO(103, 80, 164, 1)),
           scrollbarTheme: ScrollbarThemeData(
             thumbVisibility: MaterialStateProperty.all<bool>(true),
             trackVisibility: MaterialStateProperty.all<bool>(true),
