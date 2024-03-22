@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class IntroductionMyself extends StatelessWidget {
@@ -7,9 +8,9 @@ class IntroductionMyself extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;
-    final Color cardColor = Theme.of(context).cardColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color dividerColor = Theme.of(context).dividerColor;
     return SelectionArea(
       child: SingleChildScrollView(
           child: Container(
@@ -26,7 +27,16 @@ class IntroductionMyself extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ClipOval(
-                          child: Image.network('https://avatars.githubusercontent.com/u/143181701?v=4',width: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),),
+                          child: Stack(
+                            children: [
+                              Image.network('https://avatars.githubusercontent.com/u/143181701?v=4',width: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),),
+                              Container(
+                                width: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),
+                                height: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),
+                                color: Colors.black.withOpacity((isDarkMode? 0.3:0)),
+                              ),
+                            ],
+                          )
                         ),
                         const SizedBox(width: 20,),
                         Expanded(
@@ -52,7 +62,7 @@ class IntroductionMyself extends StatelessWidget {
                         width: 300,
                         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         decoration: BoxDecoration(
-                          color: cardColor,
+                          color: dividerColor,
                           borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                           border: Border.all(width: 1, color: buttonColor),
                         ),
@@ -75,7 +85,7 @@ class IntroductionMyself extends StatelessWidget {
                         width: 300,
                         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         decoration: BoxDecoration(
-                          color: cardColor,
+                          color: dividerColor,
                           borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                           border: Border.all(width: 1, color: buttonColor),
                         ),
@@ -98,7 +108,7 @@ class IntroductionMyself extends StatelessWidget {
                         width: 300,
                         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         decoration: BoxDecoration(
-                          color: cardColor,
+                          color: dividerColor,
                           borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                           border: Border.all(width: 1, color: buttonColor),
                         ),
@@ -117,12 +127,12 @@ class IntroductionMyself extends StatelessWidget {
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(buttonColor),
+                        backgroundColor: MaterialStateProperty.all(dividerColor),
                       ),
                       onPressed: (){
                         launchUrl(Uri.parse('https://github.com/douobb/pc_case_data'), mode:LaunchMode.externalApplication);
                       },
-                      child: Text("pc_case_data",style: TextStyle(fontSize: 16, color: primaryColor),),
+                      child: Text("pc_case_data",style: TextStyle(fontSize: 16, color: buttonColor),),
                     ),
                     const SizedBox(height: 10,),
                     Text("定期爬取資料，使用Python語言編寫。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
@@ -131,12 +141,12 @@ class IntroductionMyself extends StatelessWidget {
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(buttonColor),
+                        backgroundColor: MaterialStateProperty.all(dividerColor),
                       ),
                       onPressed: (){
                         launchUrl(Uri.parse('https://github.com/douobb/pc_case_filter'), mode:LaunchMode.externalApplication);
                       },
-                      child: Text("pc_case_filter",style: TextStyle(fontSize: 16, color: primaryColor),),
+                      child: Text("pc_case_filter",style: TextStyle(fontSize: 16, color: buttonColor),),
                     ),
                     const SizedBox(height: 10,),
                     Text("本網站的主體，使用Flutter(Dart)語言編寫。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),

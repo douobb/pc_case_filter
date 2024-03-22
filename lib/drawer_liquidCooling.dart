@@ -12,7 +12,7 @@ class DrawerLiquidCooling extends StatefulWidget {
 }
 
 class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
-  List<Widget> _initLiquidCoolingBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> liquidCooling) {
+  List<Widget> _initLiquidCoolingBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> liquidCooling) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
@@ -22,7 +22,7 @@ class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -62,6 +62,7 @@ class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -75,7 +76,7 @@ class _DrawerLiquidCoolingState extends State<DrawerLiquidCooling> {
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initLiquidCoolingBottom(primaryColor, textColor, isSelectedLiquidCooling,liquidCooling),
+            children: _initLiquidCoolingBottom(primaryColor, highlightColor, textColor, isSelectedLiquidCooling,liquidCooling),
           )
         ],
       ),

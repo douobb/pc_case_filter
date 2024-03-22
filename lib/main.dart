@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
           primaryColorDark: (isDarkMode? const Color.fromRGBO(187, 189, 183, 1):const Color.fromRGBO(43, 45, 48, 1)),
           primaryColorLight: (isDarkMode? Colors.white:const Color.fromRGBO(103, 80, 164, 1)),
           focusColor: (isDarkMode? Colors.grey:const Color.fromRGBO(103, 80, 164, 1)),
+          dividerColor: (isDarkMode? const Color.fromRGBO(43, 45, 48, 1):const Color.fromRGBO(230, 223, 239, 1)),
+          highlightColor: (isDarkMode? const Color.fromRGBO(187, 189, 183, 1):const Color.fromRGBO(154, 137, 194, 1)),
           scrollbarTheme: ScrollbarThemeData(
             thumbVisibility: MaterialStateProperty.all<bool>(true),
             trackVisibility: MaterialStateProperty.all<bool>(true),

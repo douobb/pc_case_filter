@@ -41,6 +41,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color dividerColor = Theme.of(context).dividerColor;
     return Drawer(
         child: Stack(
           children: [
@@ -89,7 +90,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(buttonColor),
+                        backgroundColor: MaterialStateProperty.all(dividerColor),
                       ),
                       onPressed: (){
                         searchWord = controllerSearchWord.text;
@@ -154,20 +155,20 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         widget.applyFilter();
                         Navigator.pop(context);
                       },
-                      child: Text("套用",style: TextStyle(fontSize: 16, color: primaryColor),),
+                      child: Text("套用",style: TextStyle(fontSize: 16, color: buttonColor),),
                     ),
                     const SizedBox(width: 10,),
                     ElevatedButton(
                       style: ButtonStyle(
                         splashFactory: NoSplash.splashFactory,
                         elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(buttonColor),
+                        backgroundColor: MaterialStateProperty.all(dividerColor),
                       ),
                       onPressed: (){
                         widget.initFilter();
                         Navigator.pop(context);
                       },
-                      child: Text("初始化",style: TextStyle(fontSize: 16, color: primaryColor),),
+                      child: Text("初始化",style: TextStyle(fontSize: 16, color: buttonColor),),
                     ),
                     const SizedBox(width: 10,),
                   ],

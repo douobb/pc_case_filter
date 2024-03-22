@@ -12,7 +12,7 @@ class DrawerFrontIO extends StatefulWidget {
 }
 
 class _DrawerFrontIOState extends State<DrawerFrontIO> {
-  List<Widget> _initFrontIOBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> frontIO) {
+  List<Widget> _initFrontIOBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> frontIO) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
@@ -22,7 +22,7 @@ class _DrawerFrontIOState extends State<DrawerFrontIO> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -62,6 +62,7 @@ class _DrawerFrontIOState extends State<DrawerFrontIO> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -75,7 +76,7 @@ class _DrawerFrontIOState extends State<DrawerFrontIO> {
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initFrontIOBottom(primaryColor, textColor, isSelectedFrontIO,frontIO),
+            children: _initFrontIOBottom(primaryColor, highlightColor, textColor, isSelectedFrontIO,frontIO),
           )
         ],
       ),

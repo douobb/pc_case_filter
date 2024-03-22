@@ -11,7 +11,7 @@ class DrawerSort extends StatefulWidget {
 }
 
 class _DrawerSortState extends State<DrawerSort> {
-  List<Widget> _initSortBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> sortMethod) {
+  List<Widget> _initSortBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> sortMethod) {
     List<Widget> list = [];
     for(int i = 0; i < 2; i++){
       list.add(
@@ -21,7 +21,7 @@ class _DrawerSortState extends State<DrawerSort> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -62,6 +62,7 @@ class _DrawerSortState extends State<DrawerSort> {
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return ListTile(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +85,7 @@ class _DrawerSortState extends State<DrawerSort> {
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initSortBottom(primaryColor, textColor, isSelectedSortMethod,sortMethod),
+            children: _initSortBottom(primaryColor, highlightColor, textColor, isSelectedSortMethod,sortMethod),
           ),
           SizedBox(
               height: 40,

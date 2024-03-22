@@ -423,6 +423,7 @@ class _HomePageState extends State<HomePage> {
     final Color cardColor = Theme.of(context).cardColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 0,
@@ -476,7 +477,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: textColor,
+          backgroundColor: highlightColor,
           shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
           onPressed: () {
             controller.jumpTo(0);

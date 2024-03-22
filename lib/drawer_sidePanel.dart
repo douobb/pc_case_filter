@@ -12,7 +12,7 @@ class DrawerSidePanel extends StatefulWidget {
 }
 
 class _DrawerSidePanelState extends State<DrawerSidePanel> {
-  List<Widget> _initSidePanelBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> sidePanelType) {
+  List<Widget> _initSidePanelBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> sidePanelType) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
@@ -22,7 +22,7 @@ class _DrawerSidePanelState extends State<DrawerSidePanel> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -62,6 +62,7 @@ class _DrawerSidePanelState extends State<DrawerSidePanel> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -75,7 +76,7 @@ class _DrawerSidePanelState extends State<DrawerSidePanel> {
             alignment: WrapAlignment.start,
             spacing: 5,
             runSpacing: 5,
-            children: _initSidePanelBottom(primaryColor, textColor, isSelectedSidePanel,sidePanelType),
+            children: _initSidePanelBottom(primaryColor, highlightColor, textColor, isSelectedSidePanel,sidePanelType),
           )
         ],
       ),

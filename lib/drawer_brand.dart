@@ -51,7 +51,7 @@ class DrawerBrand extends StatefulWidget {
 
 class _DrawerBrandState extends State<DrawerBrand> {
   bool isSelectAllBrand = true;
-  List<Widget> _initBrandsBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> brands) {
+  List<Widget> _initBrandsBottom(Color primaryColor, Color textColor, Color highlightColor, List<bool> isSelected, List<String> brands) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
@@ -61,7 +61,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -102,6 +102,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -130,7 +131,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
           Wrap(
             spacing: 5,
             runSpacing: 5,
-            children: _initBrandsBottom(primaryColor, textColor, isSelectedBrand, brandNames),
+            children: _initBrandsBottom(primaryColor, textColor, highlightColor, isSelectedBrand, brandNames),
           )
         ],
       ),

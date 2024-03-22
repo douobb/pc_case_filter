@@ -12,7 +12,7 @@ class DrawerDrives extends StatefulWidget {
 }
 
 class _DrawerDrivesState extends State<DrawerDrives> {
-  List<Widget> _initDrivesBottom(Color primaryColor, Color textColor, List<bool> isSelected, List<String> drivesType) {
+  List<Widget> _initDrivesBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> drivesType) {
     List<Widget> list = [];
     for(int i = 0; i < isSelected.length; i++){
       list.add(
@@ -22,7 +22,7 @@ class _DrawerDrivesState extends State<DrawerDrives> {
               color: textColor,
               borderColor: textColor,
               selectedColor: primaryColor,
-              fillColor: textColor,
+              fillColor: highlightColor,
               isSelected: [
                 isSelected[i]
               ],
@@ -62,6 +62,7 @@ class _DrawerDrivesState extends State<DrawerDrives> {
     final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
+    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -75,7 +76,7 @@ class _DrawerDrivesState extends State<DrawerDrives> {
             alignment: WrapAlignment.start,
             spacing: 5,
             runSpacing: 5,
-            children: _initDrivesBottom(primaryColor, textColor, isSelectedDrives,drivesType),
+            children: _initDrivesBottom(primaryColor, highlightColor, textColor, isSelectedDrives,drivesType),
           )
         ],
       ),
