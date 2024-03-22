@@ -11,14 +11,27 @@ void main() async {
   runApp(const MyApp());
 }
 
-bool isDarkMode = false;
-class MyApp extends StatelessWidget {
+int colorMode = 0;
+late bool isDarkMode ;
+late Brightness brightness;
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void setColorMode(){
+    setState(() {
+      colorMode = (colorMode + 1) % 3;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
-    isDarkMode = brightness == Brightness.dark;
+    brightness = MediaQuery.of(context).platformBrightness;
+    isDarkMode = (brightness == Brightness.dark && colorMode == 0) || (colorMode == 1);
     return MaterialApp(
       title:'機殼篩選',
       theme: ThemeData(
@@ -37,7 +50,7 @@ class MyApp extends StatelessWidget {
           )
       ),
       debugShowCheckedModeBanner: false,
-      home:  const HomePage(),
+      home: HomePage(setColorMode:setColorMode),
     );
   }
 }

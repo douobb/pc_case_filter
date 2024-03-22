@@ -141,7 +141,8 @@ late List<PcCase> allCase;
 List<PcCase> filterCase = [];
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Function() setColorMode;
+  const HomePage({super.key, required this.setColorMode});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -441,9 +442,21 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
+                icon: Icon((colorMode == 0? Icons.auto_mode:(colorMode == 1? Icons.dark_mode:Icons.light_mode)), color: textColor),
+                onPressed: (){
+                  setState(() {
+                    widget.setColorMode();
+                  });
+                },
+                tooltip: "顏色模式",
+              ),
+            ),
+            const SizedBox(width: 5,),
+            Builder(
+              builder: (context) => IconButton(
                 icon: Icon(Icons.info_outline, color: textColor),
                 onPressed: (){
-                  Navigator.push(context,EnterExitRoute(exitPage: const HomePage(), enterPage: const Introduction()));
+                  Navigator.push(context,EnterExitRoute(exitPage: HomePage(setColorMode:widget.setColorMode), enterPage: const Introduction()));
                 },
                 tooltip: "網站簡介",
               ),
