@@ -137,12 +137,13 @@ class PcCase {
     detail: json["detail"],
   );
 }
-late List<PcCase> allCase;
+List<PcCase> allCase = [];
 List<PcCase> filterCase = [];
 
 class HomePage extends StatefulWidget {
   final Function() setColorMode;
-  const HomePage({super.key, required this.setColorMode});
+  final Function() reset;
+  const HomePage({super.key, required this.setColorMode, required this.reset});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -430,6 +431,8 @@ class _HomePageState extends State<HomePage> {
           scrolledUnderElevation: 0,
           title: Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor)),
           actions: [
+            Text('${filterCase.length}/${allCase.length}',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
+            const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(Icons.filter_alt_outlined, color: textColor),
@@ -456,7 +459,8 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => IconButton(
                 icon: Icon(Icons.info_outline, color: textColor),
                 onPressed: (){
-                  Navigator.push(context,EnterExitRoute(exitPage: HomePage(setColorMode:widget.setColorMode), enterPage: const Introduction()));
+                  widget.reset();
+                  Navigator.push(context,EnterExitRoute(exitPage: HomePage(setColorMode: widget.setColorMode, reset: widget.reset), enterPage: const Introduction()));
                 },
                 tooltip: "網站簡介",
               ),

@@ -27,7 +27,9 @@ class _MyAppState extends State<MyApp> {
       colorMode = (colorMode + 1) % 3;
     });
   }
-
+  void reset(){
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     brightness = MediaQuery.of(context).platformBrightness;
@@ -50,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           )
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(setColorMode:setColorMode),
+      home: HomePage(setColorMode: setColorMode, reset: reset),
     );
   }
 }
