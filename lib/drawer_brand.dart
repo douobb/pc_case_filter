@@ -111,7 +111,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: Text("品牌",style: TextStyle(fontSize: 18, color: textColor),),
+        title: Text("品牌",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Checkbox(
               side: BorderSide(color: textColor),

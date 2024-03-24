@@ -42,6 +42,7 @@ class IntroductionSite extends StatelessWidget {
                     const Divider(),
                     Text("在「搜尋」欄位的右方有一輸入框，可以輸入想搜尋的文字，右方的打叉按鍵可以把已輸入的文字清除，"
                         "搜索功能必須要文字完全符合(英文大小寫不限)，才能搜尋到結果。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
+                    const SizedBox(height: 10,),
                     Image.asset("assert/introduction_search.png",fit: BoxFit.cover, width: 300,),
                     const SizedBox(height: 15,),
                     Text("排序功能",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: buttonColor),),
@@ -49,6 +50,7 @@ class IntroductionSite extends StatelessWidget {
                     Text("在「排序」欄位的最左邊有一個箭頭按鈕，其箭頭方向代表排序方式由大到小(↓)或由小到大(↑)，"
                         "原始機殼排序方式與原價屋網頁上之相同，右方兩按鈕按下時代表按照價格或容量排序，"
                         "最右方的打叉按鈕可以清除先前的選擇，回到預設排序方式。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
+                    const SizedBox(height: 10,),
                     Image.asset("assert/introduction_sort.png",fit: BoxFit.cover, width: 300,),
                     const SizedBox(height: 15,),
                     Text("篩選功能",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: buttonColor),),

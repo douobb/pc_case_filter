@@ -33,7 +33,7 @@ class IntroductionMyself extends StatelessWidget {
                               Container(
                                 width: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),
                                 height: (MediaQuery.of(context).size.width < 600? (MediaQuery.of(context).size.width)/4 : 150),
-                                color: Colors.black.withOpacity((isDarkMode? 0.3:0)),
+                                color: Colors.black.withOpacity((isDarkMode? 0.25:0)),
                               ),
                             ],
                           )

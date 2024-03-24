@@ -82,7 +82,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   title: Row(
                     children: [
                       const SizedBox(width: 10,),
-                      Text("篩選",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
+                      Text("篩選",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor),),
                     ],
                   ),
                   actions: [

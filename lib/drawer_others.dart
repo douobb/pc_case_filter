@@ -38,7 +38,7 @@ class _DrawerOthersState extends State<DrawerOthers> {
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-        title: Text("其他",style: TextStyle(fontSize: 18, color: textColor),),
+        title: Text("其他",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Row(
             children: [

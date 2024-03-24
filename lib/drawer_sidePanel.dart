@@ -70,7 +70,7 @@ class _DrawerSidePanelState extends State<DrawerSidePanel> {
         iconColor: buttonColor,
         shape: const Border(),
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: Text("側板類型",style: TextStyle(fontSize: 18, color: textColor),),
+        title: Text("側板類型",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Wrap(
             alignment: WrapAlignment.start,

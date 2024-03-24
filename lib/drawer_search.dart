@@ -28,7 +28,7 @@ class _DrawerSearchState extends State<DrawerSearch> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("搜尋",style: TextStyle(fontSize: 18, color: textColor),),
+          Text("搜尋",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
           SizedBox(
             width: 100,
             height: 50,

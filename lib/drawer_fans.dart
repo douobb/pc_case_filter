@@ -71,7 +71,7 @@ class _DrawerFansState extends State<DrawerFans> {
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: Text("風扇支援",style: TextStyle(fontSize: 18, color: textColor),),
+        title: Text("風扇支援",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Wrap(
             spacing: 5,

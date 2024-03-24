@@ -70,7 +70,7 @@ class _DrawerDrivesState extends State<DrawerDrives> {
         iconColor: buttonColor,
         shape: const Border(),
         childrenPadding: const EdgeInsets.symmetric(vertical: 10),
-        title: Text("硬碟支援",style: TextStyle(fontSize: 18, color: textColor),),
+        title: Text("硬碟支援",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Wrap(
             alignment: WrapAlignment.start,

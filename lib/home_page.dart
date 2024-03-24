@@ -362,7 +362,7 @@ class _HomePageState extends State<HomePage> {
                       ListTile(
                         title: Text(
                           cases[i].titles,
-                          style: TextStyle(fontSize: 16, color: textColor),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
                         ),
                         subtitle: Text(
                           cases[i].detail,
@@ -375,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("價格：${cases[i].price}", style: TextStyle(fontSize: 16, color: textColor),),
+                                Text("價格：${cases[i].price}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textColor),),
                                 SizedBox(
                                   child: (cases[i].links == "無" ? null
                                       : (MediaQuery.of(context).size.width < 500 ?
@@ -389,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ) : SizedBox(
                                     child: OutlinedButton.icon(
-                                      label: Text("開箱討論", style: TextStyle(color: buttonColor),),
+                                      label: Text("開箱討論", style: TextStyle(fontWeight: FontWeight.bold, color: buttonColor),),
                                       icon: FaIcon(FontAwesomeIcons.boxOpen, color: buttonColor,),
                                       onPressed: () {
                                         launchUrl(Uri.parse(cases[i].links), mode: LaunchMode.externalApplication);

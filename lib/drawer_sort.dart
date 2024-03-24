@@ -67,7 +67,7 @@ class _DrawerSortState extends State<DrawerSort> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("排序",style: TextStyle(fontSize: 18, color: textColor),),
+          Text("排序",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
           SizedBox(
             height: 40,
             child: IconButton(
