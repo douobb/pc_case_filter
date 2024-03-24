@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
           dividerColor: (isDarkMode? const Color.fromRGBO(43, 45, 48, 1):const Color.fromRGBO(230, 223, 239, 1)),
           highlightColor: (isDarkMode? const Color.fromRGBO(187, 189, 183, 1):const Color.fromRGBO(154, 137, 194, 1)),
           scrollbarTheme: ScrollbarThemeData(
+            thumbColor: MaterialStateProperty.all<Color>((isDarkMode? const Color.fromRGBO(187, 189, 183, 1):const Color.fromRGBO(43, 45, 48, 1))),
             thumbVisibility: MaterialStateProperty.all<bool>(true),
             trackVisibility: MaterialStateProperty.all<bool>(true),
             thickness: MaterialStateProperty.all<double>(10),

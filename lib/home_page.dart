@@ -153,11 +153,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   ScrollController controller = ScrollController();
   FirebaseDatabase database = FirebaseDatabase.instance;
+  var  lastChangeTime = DateTime.now().add(const Duration(minutes: -3));
 
   Future<void> initCaseData() async {
     var ref = FirebaseDatabase.instance.ref();
     bool firstChange = true;
-    var  lastChangeTime = DateTime.now().add(const Duration(minutes: -3));
     ref.onValue.listen((event) async {
       if(!firstChange && DateTime.now().difference(lastChangeTime) > const Duration(minutes: 3)){
         Fluttertoast.showToast(
@@ -338,9 +338,18 @@ class _HomePageState extends State<HomePage> {
                           cases[i].images,
                           fit: BoxFit.contain,
                         ),
-                        Container(
-                          color: Colors.black.withOpacity((isDarkMode? 0.4:0)),
-                        ),
+                        Tooltip(
+                          message: "點擊開啟圖片",
+                          waitDuration: const Duration(seconds: 1),
+                          child: InkWell(
+                            child: Container(
+                              color: Colors.black.withOpacity((isDarkMode? 0.25:0)),
+                            ),
+                            onTap: (){
+                              launchUrl(Uri.parse(cases[i].images), mode: LaunchMode.externalApplication);
+                            },
+                          ),
+                        )
                       ],
                     )
                   ),
@@ -432,7 +441,7 @@ class _HomePageState extends State<HomePage> {
           title: Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor)),
           actions: [
             Text('${filterCase.length}/${allCase.length}',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
-            const SizedBox(width: 5,),
+            const SizedBox(width: 15,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(Icons.filter_alt_outlined, color: textColor),
@@ -442,7 +451,7 @@ class _HomePageState extends State<HomePage> {
                 tooltip: "篩選條件",
               ),
             ),
-            const SizedBox(width: 5,),
+            const SizedBox(width: 10,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon((colorMode == 0? Icons.auto_mode:(colorMode == 1? Icons.dark_mode:Icons.light_mode)), color: textColor),
@@ -454,7 +463,7 @@ class _HomePageState extends State<HomePage> {
                 tooltip: "顏色模式",
               ),
             ),
-            const SizedBox(width: 5,),
+            const SizedBox(width: 10,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(Icons.info_outline, color: textColor),
