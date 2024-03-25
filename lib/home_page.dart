@@ -441,7 +441,7 @@ class _HomePageState extends State<HomePage> {
           title: Text('機殼篩選',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor)),
           actions: [
             Text('${filterCase.length}/${allCase.length}',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
-            const SizedBox(width: 15,),
+            const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(Icons.filter_alt_outlined, color: textColor),
@@ -451,7 +451,7 @@ class _HomePageState extends State<HomePage> {
                 tooltip: "篩選條件",
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon((colorMode == 0? Icons.auto_mode:(colorMode == 1? Icons.dark_mode:Icons.light_mode)), color: textColor),
@@ -463,14 +463,14 @@ class _HomePageState extends State<HomePage> {
                 tooltip: "顏色模式",
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(width: 5,),
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(Icons.info_outline, color: textColor),
                 onPressed: (){
                   widget.reset();
                   Navigator.push(context,EnterExitRoute(exitPage: HomePage(setColorMode: widget.setColorMode, reset: widget.reset), enterPage: const Introduction()));
-                },
+                  },
                 tooltip: "網站簡介",
               ),
             ),
@@ -506,7 +506,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: highlightColor,
           shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
           onPressed: () {
-            controller.jumpTo(0);
+            controller.jumpTo(controller.position.minScrollExtent);
           },
           tooltip: "移至頂端",
           child: Icon(Icons.arrow_upward, color: primaryColor),
