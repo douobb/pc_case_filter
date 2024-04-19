@@ -200,7 +200,7 @@ class _HomePageState extends State<HomePage> {
     isSelectedLiquidCooling = List.generate(6, (index) => false);
     isSelectedFrontIO = List.generate(5, (index) => false);
     isSelectedDrives = List.generate(3, (index) => false);
-    isSelectedSidePanel = List.generate(3, (index) => true);
+    isSelectedSidePanel = List.generate(4, (index) => true);
     isATXPowerOnly = false;
     isFansInside = false;
     isFanHubInside = false;

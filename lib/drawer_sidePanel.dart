@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 late List<bool> isSelectedSidePanel;
-List<String> sidePanelType = ["透側","非透側","可替換"];
+List<String> sidePanelType = ["玻璃","壓克力","非透側","可替換"];
 
 class DrawerSidePanel extends StatefulWidget {
   const DrawerSidePanel({super.key});
