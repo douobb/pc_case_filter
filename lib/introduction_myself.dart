@@ -150,6 +150,20 @@ class IntroductionMyself extends StatelessWidget {
                     ),
                     const SizedBox(height: 10,),
                     Text("本網站的主體，使用Flutter(Dart)語言編寫。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
+                    const SizedBox(height: 30,),
+                    Text("開發紀錄&心得：",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
+                    const SizedBox(height: 15,),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        splashFactory: NoSplash.splashFactory,
+                        elevation: MaterialStateProperty.all(0),
+                        backgroundColor: MaterialStateProperty.all(dividerColor),
+                      ),
+                      onPressed: (){
+                        launchUrl(Uri.parse('https://douobb.github.io/2024/04/18/Flutter%E9%96%8B%E7%99%BC-%E6%A9%9F%E6%AE%BC%E7%AF%A9%E9%81%B8%E7%B6%B2%E9%A0%81/'), mode:LaunchMode.externalApplication);
+                      },
+                      child: Text("Flutter開發-機殼篩選網頁",style: TextStyle(fontSize: 16, color: buttonColor),),
+                    ),
                   ],
                 ),
               ),

@@ -38,7 +38,8 @@ List<String> brandNames = [
   "保銳",
   "海盜船",
   "海韻",
-  "i-CoolTw"
+  "i-CoolTw",
+  "DEEPCOOL"
 ];
 
 class DrawerBrand extends StatefulWidget {
@@ -120,7 +121,7 @@ class _DrawerBrandState extends State<DrawerBrand> {
               value: isSelectAllBrand,
               onChanged: (value){
                 setState(() {
-                  isSelectedBrand = List.generate(37, (index) => (isSelectAllBrand == true? false : true));
+                  isSelectedBrand = List.generate(brandNames.length, (index) => (isSelectAllBrand == true? false : true));
                   isSelectAllBrand = !isSelectAllBrand;
                 });
               }

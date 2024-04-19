@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
     searchWord = '';
     controllerSearchWord = TextEditingController();
     isSelectedSortMethod = [false, false, true];
-    isSelectedBrand = List.generate(37, (index) => true);
+    isSelectedBrand = List.generate(brandNames.length, (index) => true);
     volumeMin = 0;
     volumeMax = 1000000;
     controllerVolumeMin = TextEditingController();
