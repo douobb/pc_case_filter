@@ -66,7 +66,7 @@ class IntroductionSite extends StatelessWidget {
                         "使用輸入框的體積、價格欄位必須介於輸入的數值之間才會顯示該機殼，"
                         "邊長欄位要機殼對應邊長小於所輸入的數值(可放入指定空間)才會顯示機殼，"
                         "CPU&GPU欄位則要大於所輸入的數值(可容納顯卡及散熱器)才會顯示機殼。\n",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
-                    const Text("* 邊長欄位的最長邊、次長邊、短邊不一定對應機殼的長寬高，實際情況請自行判斷。",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
+                    const Text("* 邊長欄位的最長邊、次長邊、短邊不一定對應機殼的高、深、寬，實際情況請自行判斷。",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
                   ],
                 ),
               ),
