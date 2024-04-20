@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pc_case_filter/drawer_length.dart';
 import 'drawer_brand.dart';
 import 'drawer_fansInside.dart';
 import 'drawer_gpu&cpu.dart';
@@ -62,6 +63,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                     DrawerSort(),
                     DrawerBrand(),
                     DrawerVolume(),
+                    DrawerLength(),
                     DrawerPrice(),
                     DrawerGpuCpu(),
                     DrawerMotherBoard(),
@@ -144,6 +146,48 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           controllerCpuMin.text = '';
                           Fluttertoast.showToast(
                               msg: "請輸入有效數字 -CPU",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14.0,
+                              webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
+                              webPosition: "center"
+                          );
+                        }
+                        try{
+                          if(controllerlenght1Max.text != '') lenght1Max = double.parse(controllerlenght1Max.text);
+                        }catch(error){
+                          controllerlenght1Max.text = '';
+                          Fluttertoast.showToast(
+                              msg: "請輸入有效數字 -最長邊",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14.0,
+                              webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
+                              webPosition: "center"
+                          );
+                        }
+                        try{
+                          if(controllerlenght2Max.text != '') lenght2Max = double.parse(controllerlenght2Max.text);
+                        }catch(error){
+                          controllerlenght2Max.text = '';
+                          Fluttertoast.showToast(
+                              msg: "請輸入有效數字 -次長邊",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14.0,
+                              webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
+                              webPosition: "center"
+                          );
+                        }
+                        try{
+                          if(controllerlenght3Max.text != '') lenght3Max = double.parse(controllerlenght3Max.text);
+                        }catch(error){
+                          controllerlenght3Max.text = '';
+                          Fluttertoast.showToast(
+                              msg: "請輸入有效數字 -短邊",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.TOP,
                               timeInSecForIosWeb: 1,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pc_case_filter/drawer_length.dart';
 import 'package:pc_case_filter/drawer_price.dart';
 import 'package:pc_case_filter/introduction.dart';
 import 'package:responsive_grid/responsive_grid.dart';
@@ -29,6 +30,9 @@ class PcCase {
   String titles;
   String brands;
   double volume;
+  double length1;
+  double length2;
+  double length3;
   double gpuLength;
   double cpuHeight;
   int motherboardCompatibility;
@@ -66,6 +70,9 @@ class PcCase {
     required this.titles,
     required this.brands,
     required this.volume,
+    required this.length1,
+    required this.length2,
+    required this.length3,
     required this.gpuLength,
     required this.cpuHeight,
     required this.motherboardCompatibility,
@@ -104,6 +111,9 @@ class PcCase {
     titles: json["titles"],
     brands: json["brands"],
     volume: json["volume"].toDouble(),
+    length1: json["length1"].toDouble(),
+    length2: json["length2"].toDouble(),
+    length3: json["length3"].toDouble(),
     gpuLength: json["GPULength"].toDouble(),
     cpuHeight: json["CPUHeight"].toDouble(),
     motherboardCompatibility: json["motherboardCompatibility"],
@@ -188,6 +198,12 @@ class _HomePageState extends State<HomePage> {
     volumeMax = 1000000;
     controllerVolumeMin = TextEditingController();
     controllerVolumeMax = TextEditingController();
+    lenght1Max = 100;
+    lenght2Max = 100;
+    lenght3Max = 100;
+    controllerlenght1Max = TextEditingController();
+    controllerlenght2Max = TextEditingController();
+    controllerlenght3Max = TextEditingController();
     priceMin = 0;
     priceMax = 1000000;
     controllerPriceMin = TextEditingController();
@@ -218,7 +234,7 @@ class _HomePageState extends State<HomePage> {
 
   void applyFilter(){
     setState(() {
-      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside);
+      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside);
     });
   }
 
@@ -238,14 +254,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside){
+  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
         if(isSelectedBrand[brandNames.indexOf(allCases[i].brands)]) {
           if(allCases[i].volume >= volumeMin && allCases[i].volume <= volumeMax) {
-            if(allCases[i].price >= priceMin && allCases[i].price <= priceMax) {
-              if(allCases[i].gpuLength >= gpuLengthMin && allCases[i].cpuHeight >= cpuHeightMin) {
+            if(allCases[i].length1 <= lenght1Max && allCases[i].length2 <= lenght2Max && allCases[i].length3 <= lenght3Max) {
+              print("${allCases[i].length3} ${lenght3Max}");
+              if(allCases[i].price >= priceMin && allCases[i].price <= priceMax) {
                 if(allCases[i].gpuLength >= gpuLengthMin && allCases[i].cpuHeight >= cpuHeightMin) {
                   if(isSelectedMotherBoard[allCases[i].motherboardCompatibility]) {
                     if(!((isSelectedFans[0] && allCases[i].fanSupportFront == 0)
