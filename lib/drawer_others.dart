@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 late bool isATXPowerOnly;
 late bool isFanHubInside;
 late bool isAllowVerticalGPU;
+late bool isBackMotherboard;
+late bool isTank;
 
 class DrawerOthers extends StatefulWidget {
   const DrawerOthers({super.key});
@@ -84,6 +86,40 @@ class _DrawerOthersState extends State<DrawerOthers> {
                   onChanged: (value){
                     setState(() {
                       isAllowVerticalGPU = !isAllowVerticalGPU;
+                    });
+                  }
+              ),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              Text("支援背插",style: TextStyle(fontSize: 18, color: textColor),),
+              Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
+                  value: isBackMotherboard,
+                  onChanged: (value){
+                    setState(() {
+                      isBackMotherboard = !isBackMotherboard;
+                    });
+                  }
+              ),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              Text("全景機殼",style: TextStyle(fontSize: 18, color: textColor),),
+              Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
+                  value: isTank,
+                  onChanged: (value){
+                    setState(() {
+                      isTank = !isTank;
                     });
                   }
               ),

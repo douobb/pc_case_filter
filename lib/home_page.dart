@@ -60,6 +60,8 @@ class PcCase {
   int sidePanel;
   int fanHub;
   int verticalGPU;
+  int backMotherboard;
+  int tank;
   String images;
   String links;
   String gift;
@@ -101,6 +103,8 @@ class PcCase {
     required this.fanHub,
     required this.verticalGPU,
     required this.images,
+    required this.backMotherboard,
+    required this.tank,
     required this.links,
     required this.gift,
     required this.price,
@@ -141,6 +145,8 @@ class PcCase {
     sidePanel: json["sidePanel"],
     fanHub: json["fanHub"],
     verticalGPU: json["verticalGPU"],
+    backMotherboard: json["backMotherboard"],
+    tank: json["tank"],
     images: json["images"],
     links: json["links"],
     gift: json["gift"],
@@ -223,6 +229,8 @@ class _HomePageState extends State<HomePage> {
     fansInsideCountMax = 7;
     isFanHubInside = false;
     isAllowVerticalGPU = false;
+    isBackMotherboard = false;
+    isTank = false;
   }
 
   Future<void> initAll() async {
@@ -234,7 +242,7 @@ class _HomePageState extends State<HomePage> {
 
   void applyFilter(){
     setState(() {
-      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside);
+      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank);
     });
   }
 
@@ -254,14 +262,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside){
+  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
         if(isSelectedBrand[brandNames.indexOf(allCases[i].brands)]) {
           if(allCases[i].volume >= volumeMin && allCases[i].volume <= volumeMax) {
             if(allCases[i].length1 <= lenght1Max && allCases[i].length2 <= lenght2Max && allCases[i].length3 <= lenght3Max) {
-              print("${allCases[i].length3} ${lenght3Max}");
               if(allCases[i].price >= priceMin && allCases[i].price <= priceMax) {
                 if(allCases[i].gpuLength >= gpuLengthMin && allCases[i].cpuHeight >= cpuHeightMin) {
                   if(isSelectedMotherBoard[allCases[i].motherboardCompatibility]) {
@@ -289,7 +296,11 @@ class _HomePageState extends State<HomePage> {
                                 if(allCases[i].fansInsideCount >= fansInsideCountMin && allCases[i].fansInsideCount <= fansInsideCountMax) {
                                   if(!(isFanHubInside && allCases[i].fanHub == 0)) {
                                     if(!(isAllowVerticalGPU && allCases[i].verticalGPU == 0)) {
-                                      list.add(allCases[i]);
+                                      if(!(isBackMotherboard && allCases[i].backMotherboard == 0)) {
+                                        if(!(isTank && allCases[i].tank == 0)) {
+                                          list.add(allCases[i]);
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -521,14 +532,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: highlightColor,
-          shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
-          onPressed: () {
-            controller.jumpTo(controller.position.minScrollExtent);
-          },
-          tooltip: "移至頂端",
-          child: Icon(Icons.arrow_upward, color: primaryColor),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              backgroundColor: highlightColor,
+              shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
+              onPressed: () {
+                controller.jumpTo(controller.position.minScrollExtent);
+              },
+              tooltip: "移至頂端",
+              child: Icon(Icons.arrow_upward, color: primaryColor),
+            ),
+            const SizedBox(height: 10,),
+            FloatingActionButton(
+              backgroundColor: highlightColor,
+              shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
+              onPressed: () {
+                launchUrl(Uri.parse('https://www.coolpc.com.tw/eachview.php?IGrp=14'), mode:LaunchMode.externalApplication);
+              },
+              tooltip: "原價屋網頁",
+              child: Icon(Icons.shopping_cart_outlined, color: primaryColor),
+            )
+          ],
         )
     );
   }
