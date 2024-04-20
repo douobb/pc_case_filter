@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 late bool isATXPowerOnly;
-late bool isFansInside;
 late bool isFanHubInside;
 late bool isAllowVerticalGPU;
 
@@ -51,23 +50,6 @@ class _DrawerOthersState extends State<DrawerOthers> {
                   onChanged: (value){
                     setState(() {
                       isATXPowerOnly = !isATXPowerOnly;
-                    });
-                  }
-              ),
-            ],
-          ),
-          const SizedBox(height: 10,),
-          Row(
-            children: [
-              Text("內附風扇",style: TextStyle(fontSize: 18, color: textColor),),
-              Checkbox(
-                  side: BorderSide(color: textColor),
-                  activeColor: buttonColor,
-                  checkColor: primaryColor,
-                  value: isFansInside,
-                  onChanged: (value){
-                    setState(() {
-                      isFansInside = !isFansInside;
                     });
                   }
               ),

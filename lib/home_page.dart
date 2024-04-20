@@ -7,6 +7,7 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'EnterExitRoute.dart';
+import 'drawer_fansInside.dart';
 import 'drawer_search.dart';
 import 'drawer_sort.dart';
 import 'filter_drawer.dart';
@@ -202,7 +203,8 @@ class _HomePageState extends State<HomePage> {
     isSelectedDrives = List.generate(3, (index) => false);
     isSelectedSidePanel = List.generate(4, (index) => true);
     isATXPowerOnly = false;
-    isFansInside = false;
+    fansInsideCountMin = 0;
+    fansInsideCountMax = 7;
     isFanHubInside = false;
     isAllowVerticalGPU = false;
   }
@@ -216,7 +218,7 @@ class _HomePageState extends State<HomePage> {
 
   void applyFilter(){
     setState(() {
-      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, isFansInside, isAllowVerticalGPU, isFanHubInside);
+      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside);
     });
   }
 
@@ -236,7 +238,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, isFansInside, isAllowVerticalGPU, isFanHubInside){
+  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
@@ -267,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                               || (isSelectedDrives[2] && allCases[i].cdSupport == 0))) {
                             if(isSelectedSidePanel[allCases[i].sidePanel]) {
                               if(!(isATXPowerOnly && allCases[i].sfxPsu == 1)) {
-                                if(!(isFansInside && allCases[i].fansInsideCount == 0)) {
+                                if(allCases[i].fansInsideCount >= fansInsideCountMin && allCases[i].fansInsideCount <= fansInsideCountMax) {
                                   if(!(isFanHubInside && allCases[i].fanHub == 0)) {
                                     if(!(isAllowVerticalGPU && allCases[i].verticalGPU == 0)) {
                                       list.add(allCases[i]);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'drawer_brand.dart';
+import 'drawer_fansInside.dart';
 import 'drawer_gpu&cpu.dart';
 import 'drawer_price.dart';
 import 'drawer_sort.dart';
@@ -69,6 +70,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                     DrawerFrontIO(),
                     DrawerDrives(),
                     DrawerSidePanel(),
+                    DrawerFansInside(),
                     DrawerOthers()
                   ],
                 ),
