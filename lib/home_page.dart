@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'EnterExitRoute.dart';
 import 'drawer_fansInside.dart';
+import 'drawer_gpu.dart';
 import 'drawer_search.dart';
 import 'drawer_sort.dart';
 import 'filter_drawer.dart';
@@ -21,7 +22,7 @@ import 'drawer_motherboard.dart';
 import 'drawer_others.dart';
 import 'drawer_sidePanel.dart';
 import 'drawer_volume.dart';
-import 'drawer_gpu&cpu.dart';
+import 'drawer_cpu.dart';
 import 'main.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -215,9 +216,13 @@ class _HomePageState extends State<HomePage> {
     controllerPriceMin = TextEditingController();
     controllerPriceMax = TextEditingController();
     gpuLengthMin = 0;
+    gpuLengthMax = 100;
     cpuHeightMin = 0;
+    cpuHeightMax = 100;
     controllerGpuMin = TextEditingController();
+    controllerGpuMax = TextEditingController();
     controllerCpuMin = TextEditingController();
+    controllerCpuMax = TextEditingController();
     isSelectedMotherBoard = List.generate(4, (index) => true);
     isSelectedFans = List.generate(5, (index) => false);
     isSelectedLiquidCooling = List.generate(6, (index) => false);
@@ -242,7 +247,7 @@ class _HomePageState extends State<HomePage> {
 
   void applyFilter(){
     setState(() {
-      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank);
+      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank);
     });
   }
 
@@ -262,7 +267,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, cpuHeightMin, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
+  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
@@ -270,35 +275,37 @@ class _HomePageState extends State<HomePage> {
           if(allCases[i].volume >= volumeMin && allCases[i].volume <= volumeMax) {
             if(allCases[i].length1 <= lenght1Max && allCases[i].length2 <= lenght2Max && allCases[i].length3 <= lenght3Max) {
               if(allCases[i].price >= priceMin && allCases[i].price <= priceMax) {
-                if(allCases[i].gpuLength >= gpuLengthMin && allCases[i].cpuHeight >= cpuHeightMin) {
-                  if(isSelectedMotherBoard[allCases[i].motherboardCompatibility]) {
-                    if(!((isSelectedFans[0] && allCases[i].fanSupportFront == 0)
-                        || (isSelectedFans[1] && allCases[i].fanSupportBack == 0)
-                        || (isSelectedFans[2] && allCases[i].fanSupportTop == 0)
-                        || (isSelectedFans[3] && allCases[i].fanSupportBottom == 0)
-                        || (isSelectedFans[4] && allCases[i].fanSupportSide == 0))) {
-                      if(!((isSelectedLiquidCooling[0] && allCases[i].lc120 == 0)
-                          || (isSelectedLiquidCooling[1] && allCases[i].lc140 == 0)
-                          || (isSelectedLiquidCooling[2] && allCases[i].lc240 == 0)
-                          || (isSelectedLiquidCooling[3] && allCases[i].lc280 == 0)
-                          || (isSelectedLiquidCooling[4] && allCases[i].lc360 == 0)
-                          || (isSelectedLiquidCooling[5] && allCases[i].lc420 == 0))) {
-                        if(!((isSelectedFrontIO[0] && allCases[i].ioU3 == 0)
-                            || (isSelectedFrontIO[1] && allCases[i].ioU2 == 0)
-                            || (isSelectedFrontIO[2] && allCases[i].ioTypeC == 0)
-                            || (isSelectedFrontIO[3] && allCases[i].ioHdmi == 0)
-                            || (isSelectedFrontIO[4] && allCases[i].ioSdReader == 0))) {
-                          if(!((isSelectedDrives[0] && allCases[i].drivesSupport35 == 0)
-                              || (isSelectedDrives[1] && allCases[i].drivesSupport25 == 0)
-                              || (isSelectedDrives[2] && allCases[i].cdSupport == 0))) {
-                            if(isSelectedSidePanel[allCases[i].sidePanel]) {
-                              if(!(isATXPowerOnly && allCases[i].sfxPsu == 1)) {
-                                if(allCases[i].fansInsideCount >= fansInsideCountMin && allCases[i].fansInsideCount <= fansInsideCountMax) {
-                                  if(!(isFanHubInside && allCases[i].fanHub == 0)) {
-                                    if(!(isAllowVerticalGPU && allCases[i].verticalGPU == 0)) {
-                                      if(!(isBackMotherboard && allCases[i].backMotherboard == 0)) {
-                                        if(!(isTank && allCases[i].tank == 0)) {
-                                          list.add(allCases[i]);
+                if(allCases[i].gpuLength >= gpuLengthMin && allCases[i].gpuLength <= gpuLengthMax) {
+                  if(allCases[i].cpuHeight >= cpuHeightMin && allCases[i].cpuHeight <= cpuHeightMax) {
+                    if(isSelectedMotherBoard[allCases[i].motherboardCompatibility]) {
+                      if(!((isSelectedFans[0] && allCases[i].fanSupportFront == 0)
+                          || (isSelectedFans[1] && allCases[i].fanSupportBack == 0)
+                          || (isSelectedFans[2] && allCases[i].fanSupportTop == 0)
+                          || (isSelectedFans[3] && allCases[i].fanSupportBottom == 0)
+                          || (isSelectedFans[4] && allCases[i].fanSupportSide == 0))) {
+                        if(!((isSelectedLiquidCooling[0] && allCases[i].lc120 == 0)
+                            || (isSelectedLiquidCooling[1] && allCases[i].lc140 == 0)
+                            || (isSelectedLiquidCooling[2] && allCases[i].lc240 == 0)
+                            || (isSelectedLiquidCooling[3] && allCases[i].lc280 == 0)
+                            || (isSelectedLiquidCooling[4] && allCases[i].lc360 == 0)
+                            || (isSelectedLiquidCooling[5] && allCases[i].lc420 == 0))) {
+                          if(!((isSelectedFrontIO[0] && allCases[i].ioU3 == 0)
+                              || (isSelectedFrontIO[1] && allCases[i].ioU2 == 0)
+                              || (isSelectedFrontIO[2] && allCases[i].ioTypeC == 0)
+                              || (isSelectedFrontIO[3] && allCases[i].ioHdmi == 0)
+                              || (isSelectedFrontIO[4] && allCases[i].ioSdReader == 0))) {
+                            if(!((isSelectedDrives[0] && allCases[i].drivesSupport35 == 0)
+                                || (isSelectedDrives[1] && allCases[i].drivesSupport25 == 0)
+                                || (isSelectedDrives[2] && allCases[i].cdSupport == 0))) {
+                              if(isSelectedSidePanel[allCases[i].sidePanel]) {
+                                if(!(isATXPowerOnly && allCases[i].sfxPsu == 1)) {
+                                  if(allCases[i].fansInsideCount >= fansInsideCountMin && allCases[i].fansInsideCount <= fansInsideCountMax) {
+                                    if(!(isFanHubInside && allCases[i].fanHub == 0)) {
+                                      if(!(isAllowVerticalGPU && allCases[i].verticalGPU == 0)) {
+                                        if(!(isBackMotherboard && allCases[i].backMotherboard == 0)) {
+                                          if(!(isTank && allCases[i].tank == 0)) {
+                                            list.add(allCases[i]);
+                                          }
                                         }
                                       }
                                     }

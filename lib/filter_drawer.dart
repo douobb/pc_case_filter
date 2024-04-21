@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pc_case_filter/drawer_gpu.dart';
 import 'package:pc_case_filter/drawer_length.dart';
 import 'drawer_brand.dart';
 import 'drawer_fansInside.dart';
-import 'drawer_gpu&cpu.dart';
+import 'drawer_cpu.dart';
 import 'drawer_price.dart';
 import 'drawer_sort.dart';
 import 'drawer_volume.dart';
@@ -65,7 +66,8 @@ class _FilterDrawerState extends State<FilterDrawer> {
                     DrawerVolume(),
                     DrawerLength(),
                     DrawerPrice(),
-                    DrawerGpuCpu(),
+                    DrawerCpu(),
+                    DrawerGpu(),
                     DrawerMotherBoard(),
                     DrawerFans(),
                     DrawerLiquidCooling(),
@@ -103,7 +105,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         }catch(error){
                           controllerVolumeMin.text = '';
                           Fluttertoast.showToast(
-                              msg: "請輸入有效數字 -體積min",
+                              msg: "請輸入有效數字 -體積 min",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.TOP,
                               timeInSecForIosWeb: 1,
@@ -117,7 +119,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         }catch(error){
                           controllerVolumeMax.text = '';
                           Fluttertoast.showToast(
-                              msg: "請輸入有效數字 -體積max",
+                              msg: "請輸入有效數字 -體積 max",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.TOP,
                               timeInSecForIosWeb: 1,
@@ -131,7 +133,21 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         }catch(error){
                           controllerGpuMin.text = '';
                           Fluttertoast.showToast(
-                              msg: "請輸入有效數字 -GPU",
+                              msg: "請輸入有效數字 -GPU min",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14.0,
+                              webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
+                              webPosition: "center"
+                          );
+                        }
+                        try{
+                          if(controllerGpuMax.text != '') gpuLengthMax = double.parse(controllerGpuMax.text);
+                        }catch(error){
+                          controllerGpuMax.text = '';
+                          Fluttertoast.showToast(
+                              msg: "請輸入有效數字 -GPU max",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.TOP,
                               timeInSecForIosWeb: 1,
@@ -145,7 +161,21 @@ class _FilterDrawerState extends State<FilterDrawer> {
                         }catch(error){
                           controllerCpuMin.text = '';
                           Fluttertoast.showToast(
-                              msg: "請輸入有效數字 -CPU",
+                              msg: "請輸入有效數字 -CPU min",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14.0,
+                              webBgColor: "linear-gradient(to right, #6750a4, #6750a4)",
+                              webPosition: "center"
+                          );
+                        }
+                        try{
+                          if(controllerCpuMax.text != '') cpuHeightMax = double.parse(controllerCpuMax.text);
+                        }catch(error){
+                          controllerCpuMax.text = '';
+                          Fluttertoast.showToast(
+                              msg: "請輸入有效數字 -CPU max",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.TOP,
                               timeInSecForIosWeb: 1,

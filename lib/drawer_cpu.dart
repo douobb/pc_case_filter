@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-late double gpuLengthMin;
 late double cpuHeightMin;
-late TextEditingController controllerGpuMin;
+late double cpuHeightMax;
 late TextEditingController controllerCpuMin;
+late TextEditingController controllerCpuMax;
 
-class DrawerGpuCpu extends StatefulWidget {
-  const DrawerGpuCpu({super.key});
+class DrawerCpu extends StatefulWidget {
+  const DrawerCpu({super.key});
 
   @override
-  State<DrawerGpuCpu> createState() => _DrawerGpuCpuState();
+  State<DrawerCpu> createState() => _DrawerCpuState();
 }
 
-class _DrawerGpuCpuState extends State<DrawerGpuCpu> {
+class _DrawerCpuState extends State<DrawerCpu> {
   @override
   void initState() {
     super.initState();
@@ -36,55 +36,54 @@ class _DrawerGpuCpuState extends State<DrawerGpuCpu> {
         shape: const Border(),
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-        title: Text("GPU&CPU",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
+        title: Text("CPU高",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("GPU：",style: TextStyle(fontSize: 18, color: textColor),),
               SizedBox(
-                width: 100,
-                height: 50,
-                child: TextField(
-                  controller: controllerGpuMin,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp("[0-9.]"))
-                  ],
-                  textAlignVertical: TextAlignVertical.center,
-                  style: TextStyle(fontSize: 14, color: textColor),
-                  decoration: InputDecoration(
-                    hintText: "長度(cm)",
-                    hintStyle:TextStyle(color: textColor),
-                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
-                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10,),
-          Row(
-            children: [
-              Text("CPU：",style: TextStyle(fontSize: 18, color: textColor),),
-              SizedBox(
-                width: 100,
+                width: 80,
                 height: 50,
                 child: TextField(
                   controller: controllerCpuMin,
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp("[0-9.]"))
+                    FilteringTextInputFormatter.digitsOnly
                   ],
                   textAlignVertical: TextAlignVertical.center,
                   style: TextStyle(fontSize: 14, color: textColor),
                   decoration: InputDecoration(
-                    hintText: "高度(cm)",
+                    hintText: "最小值",
                     hintStyle:TextStyle(color: textColor),
                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
                     focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
                   ),
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                width: 80,
+                child: const Divider(),
+              ),
+              SizedBox(
+                width: 80,
+                height: 50,
+                child: TextField(
+                  controller: controllerCpuMax,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp("[0-9.]"))
+                  ],
+                  textAlignVertical: TextAlignVertical.center,
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
+                    hintText: "最大值",
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                  ),
+                ),
+              )
             ],
           ),
         ],
