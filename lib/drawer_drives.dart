@@ -1,52 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-late List<bool> isSelectedDrives;
-List<String> drivesType = ["2.5","3.5","5.25"];
+late int drives25;
+late int drives35;
+late int drives525;
+late TextEditingController controllerDrives25;
+late TextEditingController controllerDrives35;
+late TextEditingController controllerDrives525;
 
 class DrawerDrives extends StatefulWidget {
   const DrawerDrives({super.key});
 
   @override
   State<DrawerDrives> createState() => _DrawerDrivesState();
-
 }
 
 class _DrawerDrivesState extends State<DrawerDrives> {
-  List<Widget> _initDrivesBottom(Color primaryColor, Color highlightColor, Color textColor, List<bool> isSelected, List<String> drivesType) {
-    List<Widget> list = [];
-    for(int i = 0; i < isSelected.length; i++){
-      list.add(
-          SizedBox(
-            height: 40,
-            child: ToggleButtons(
-              color: textColor,
-              borderColor: textColor,
-              selectedColor: primaryColor,
-              fillColor: highlightColor,
-              isSelected: [
-                isSelected[i]
-              ],
-              onPressed: (int index) {
-                setState(() {
-                  isSelected[i] =
-                  !isSelected[i];
-                });
-              },
-              borderRadius: BorderRadius.circular(20),
-              splashColor: Colors.transparent,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Text(drivesType[i],style: const TextStyle(fontSize: 14)),
-                )
-              ],
-            ),
-          )
-      );
-    }
-    return list;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -59,25 +28,92 @@ class _DrawerDrivesState extends State<DrawerDrives> {
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme.of(context).primaryColor;
     final Color textColor = Theme.of(context).primaryColorDark;
     final Color buttonColor = Theme.of(context).primaryColorLight;
-    final Color highlightColor = Theme.of(context).highlightColor;
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         collapsedIconColor: textColor,
         iconColor: buttonColor,
         shape: const Border(),
-        childrenPadding: const EdgeInsets.symmetric(vertical: 10),
+        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+        childrenPadding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         title: Text("硬碟支援",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),),
         children: [
-          Wrap(
-            alignment: WrapAlignment.start,
-            spacing: 5,
-            runSpacing: 5,
-            children: _initDrivesBottom(primaryColor, highlightColor, textColor, isSelectedDrives,drivesType),
-          )
+          Row(
+            children: [
+              Text("2.5吋：",style: TextStyle(fontSize: 18, color: textColor),),
+              SizedBox(
+                width: 100,
+                height: 50,
+                child: TextField(
+                  controller: controllerDrives25,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  textAlignVertical: TextAlignVertical.center,
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
+                    hintText: "數量",
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              Text("3.5吋：",style: TextStyle(fontSize: 18, color: textColor),),
+              SizedBox(
+                width: 100,
+                height: 50,
+                child: TextField(
+                  controller: controllerDrives35,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  textAlignVertical: TextAlignVertical.center,
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
+                    hintText: "數量",
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              Text("5.25吋：",style: TextStyle(fontSize: 18, color: textColor),),
+              SizedBox(
+                width: 100,
+                height: 50,
+                child: TextField(
+                  controller: controllerDrives525,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  textAlignVertical: TextAlignVertical.center,
+                  style: TextStyle(fontSize: 14, color: textColor),
+                  decoration: InputDecoration(
+                    hintText: "數量",
+                    hintStyle:TextStyle(color: textColor),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: textColor)),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

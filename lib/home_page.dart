@@ -227,7 +227,12 @@ class _HomePageState extends State<HomePage> {
     isSelectedFans = List.generate(5, (index) => false);
     isSelectedLiquidCooling = List.generate(6, (index) => false);
     isSelectedFrontIO = List.generate(5, (index) => false);
-    isSelectedDrives = List.generate(3, (index) => false);
+    drives25 = 0;
+    drives35 = 0;
+    drives525 = 0;
+    controllerDrives25 = TextEditingController();
+    controllerDrives35 = TextEditingController();
+    controllerDrives525 = TextEditingController();
     isSelectedSidePanel = List.generate(4, (index) => true);
     isATXPowerOnly = false;
     fansInsideCountMin = 0;
@@ -247,7 +252,7 @@ class _HomePageState extends State<HomePage> {
 
   void applyFilter(){
     setState(() {
-      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank);
+      filterCase = filterCard(allCase, searchWord,isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, drives25, drives35, drives525, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank);
     });
   }
 
@@ -267,7 +272,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, isSelectedDrives, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
+  List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, drives25, drives35, drives525, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
@@ -294,9 +299,9 @@ class _HomePageState extends State<HomePage> {
                               || (isSelectedFrontIO[2] && allCases[i].ioTypeC == 0)
                               || (isSelectedFrontIO[3] && allCases[i].ioHdmi == 0)
                               || (isSelectedFrontIO[4] && allCases[i].ioSdReader == 0))) {
-                            if(!((isSelectedDrives[0] && allCases[i].drivesSupport35 == 0)
-                                || (isSelectedDrives[1] && allCases[i].drivesSupport25 == 0)
-                                || (isSelectedDrives[2] && allCases[i].cdSupport == 0))) {
+                            if(allCases[i].drivesSupport25 >= drives25
+                                && allCases[i].drivesSupport35 >= drives35
+                                && allCases[i].cdSupport >= drives525) {
                               if(isSelectedSidePanel[allCases[i].sidePanel]) {
                                 if(!(isATXPowerOnly && allCases[i].sfxPsu == 1)) {
                                   if(allCases[i].fansInsideCount >= fansInsideCountMin && allCases[i].fansInsideCount <= fansInsideCountMax) {

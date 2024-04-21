@@ -62,10 +62,12 @@ class IntroductionSite extends StatelessWidget {
                     Text("篩選邏輯",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: buttonColor),),
                     const Divider(),
                     Text("使用or邏輯的欄位：品牌、主板以及側板類型，預設會選擇所有選項，只要有任一選項符合的機殼就會顯示。\n\n"
-                        "使用and邏輯的欄位：風扇支援、水冷支援、I/O支援以及硬碟支援，預設不會選擇任何選項，必須要所有選項都符合的機殼才會顯示。\n\n"
+                        "使用and邏輯的欄位：風扇支援、水冷支援以及I/O支援，預設不會選擇任何選項，必須要所有選項都符合的機殼才會顯示。\n\n"
                         "使用輸入框的體積、價格、GPU長、CPU高欄位必須介於輸入的數值之間才會顯示該機殼，"
-                        "邊長欄位要機殼對應邊長小於所輸入的數值(可放入指定空間)才會顯示機殼。\n",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
-                    const Text("* 邊長欄位的最長邊、次長邊、短邊不一定對應機殼的高、深、寬，實際情況請自行判斷。",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
+                        "邊長欄位要機殼對應邊長小於所輸入的數值(可放入指定空間)才會顯示機殼，"
+                        "而硬碟支援必須要機殼的支援硬碟數大於所輸入的數值才會顯示機殼。\n",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
+                    const Text("* 邊長欄位的最長邊、次長邊、短邊不一定對應機殼的高、深、寬，實際情況請自行判斷。\n"
+                        "* 硬碟支援欄位之間會有兼容問題，不一定能同時滿足所有需求，建議只在一個框內輸入數值，實際情況請自行判斷。",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
                   ],
                 ),
               ),

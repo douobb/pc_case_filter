@@ -101,7 +101,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                       onPressed: (){
                         searchWord = controllerSearchWord.text;
                         try{
-                          if(controllerVolumeMin.text != '') volumeMin = double.parse(controllerVolumeMin.text);
+                          if(controllerVolumeMin.text != '') {
+                            volumeMin = double.parse(controllerVolumeMin.text);
+                          } else {
+                            volumeMin = 0;
+                          }
                         }catch(error){
                           controllerVolumeMin.text = '';
                           Fluttertoast.showToast(
@@ -115,7 +119,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerVolumeMax.text != '') volumeMax = double.parse(controllerVolumeMax.text);
+                          if(controllerVolumeMax.text != '') {
+                            volumeMax = double.parse(controllerVolumeMax.text);
+                          } else {
+                            volumeMax = 1000000;
+                          }
                         }catch(error){
                           controllerVolumeMax.text = '';
                           Fluttertoast.showToast(
@@ -129,7 +137,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerGpuMin.text != '') gpuLengthMin = double.parse(controllerGpuMin.text);
+                          if(controllerGpuMin.text != '') {
+                            gpuLengthMin = double.parse(controllerGpuMin.text);
+                          } else {
+                            gpuLengthMin = 0;
+                          }
                         }catch(error){
                           controllerGpuMin.text = '';
                           Fluttertoast.showToast(
@@ -143,7 +155,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerGpuMax.text != '') gpuLengthMax = double.parse(controllerGpuMax.text);
+                          if(controllerGpuMax.text != '') {
+                            gpuLengthMax = double.parse(controllerGpuMax.text);
+                          } else {
+                            gpuLengthMax = 100;
+                          }
                         }catch(error){
                           controllerGpuMax.text = '';
                           Fluttertoast.showToast(
@@ -157,7 +173,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerCpuMin.text != '') cpuHeightMin = double.parse(controllerCpuMin.text);
+                          if(controllerCpuMin.text != '') {
+                            cpuHeightMin = double.parse(controllerCpuMin.text);
+                          } else {
+                            cpuHeightMin = 0;
+                          }
                         }catch(error){
                           controllerCpuMin.text = '';
                           Fluttertoast.showToast(
@@ -171,7 +191,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerCpuMax.text != '') cpuHeightMax = double.parse(controllerCpuMax.text);
+                          if(controllerCpuMax.text != '') {
+                            cpuHeightMax = double.parse(controllerCpuMax.text);
+                          } else {
+                            cpuHeightMax = 100;
+                          }
                         }catch(error){
                           controllerCpuMax.text = '';
                           Fluttertoast.showToast(
@@ -185,7 +209,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerlenght1Max.text != '') lenght1Max = double.parse(controllerlenght1Max.text);
+                          if(controllerlenght1Max.text != '') {
+                            lenght1Max = double.parse(controllerlenght1Max.text);
+                          } else {
+                            lenght1Max = 100;
+                          }
                         }catch(error){
                           controllerlenght1Max.text = '';
                           Fluttertoast.showToast(
@@ -199,7 +227,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerlenght2Max.text != '') lenght2Max = double.parse(controllerlenght2Max.text);
+                          if(controllerlenght2Max.text != '') {
+                            lenght2Max = double.parse(controllerlenght2Max.text);
+                          } else {
+                            lenght2Max = 100;
+                          }
                         }catch(error){
                           controllerlenght2Max.text = '';
                           Fluttertoast.showToast(
@@ -213,7 +245,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                           );
                         }
                         try{
-                          if(controllerlenght3Max.text != '') lenght3Max = double.parse(controllerlenght3Max.text);
+                          if(controllerlenght3Max.text != '') {
+                            lenght3Max = double.parse(controllerlenght3Max.text);
+                          } else {
+                            lenght3Max = 100;
+                          }
                         }catch(error){
                           controllerlenght3Max.text = '';
                           Fluttertoast.showToast(
@@ -226,8 +262,31 @@ class _FilterDrawerState extends State<FilterDrawer> {
                               webPosition: "center"
                           );
                         }
-                        if(controllerPriceMin.text != '') priceMin = int.parse(controllerPriceMin.text);
-                        if(controllerPriceMax.text != '') priceMax = int.parse(controllerPriceMax.text);
+                        if(controllerPriceMin.text != '') {
+                          priceMin = int.parse(controllerPriceMin.text);
+                        } else {
+                          priceMin = 0;
+                        }
+                        if(controllerPriceMax.text != '') {
+                          priceMax = int.parse(controllerPriceMax.text);
+                        } else {
+                          priceMax = 1000000;
+                        }
+                        if(controllerDrives25.text != '') {
+                          drives25 = int.parse(controllerDrives25.text);
+                        } else {
+                          drives25 = 0;
+                        }
+                        if(controllerDrives35.text != '') {
+                          drives35 = int.parse(controllerDrives35.text);
+                        } else {
+                          drives35 = 0;
+                        }
+                        if(controllerDrives525.text != '') {
+                          drives525 = int.parse(controllerDrives525.text);
+                        } else {
+                          drives525 = 0;
+                        }
                         widget.applyFilter();
                         Navigator.pop(context);
                       },
