@@ -40,7 +40,8 @@ List<String> brandNames = [
   "海韻",
   "i-CoolTw",
   "DEEPCOOL",
-  "安耐美"
+  "安耐美",
+  "YAMA"
 ];
 
 class DrawerBrand extends StatefulWidget {
