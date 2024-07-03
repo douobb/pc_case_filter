@@ -236,7 +236,7 @@ class _HomePageState extends State<HomePage> {
     isSelectedSidePanel = List.generate(4, (index) => true);
     isATXPowerOnly = false;
     fansInsideCountMin = 0;
-    fansInsideCountMax = 7;
+    fansInsideCountMax = 10;
     isFanHubInside = false;
     isAllowVerticalGPU = false;
     isBackMotherboard = false;

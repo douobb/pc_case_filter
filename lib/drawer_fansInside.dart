@@ -40,8 +40,8 @@ class _DrawerFansInsideState extends State<DrawerFansInside> {
         children: [
           RangeSlider(
             min: 0,
-            max: 7,
-            divisions: 7,
+            max: 10,
+            divisions: 10,
             inactiveColor: dividerColor,
             activeColor: buttonColor,
             labels: RangeLabels('min：$fansInsideCountMin', 'max：$fansInsideCountMax'),
