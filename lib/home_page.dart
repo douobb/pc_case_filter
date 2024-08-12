@@ -275,6 +275,7 @@ class _HomePageState extends State<HomePage> {
   List<PcCase> filterCard(List<PcCase> allCases, searchWord, isSelectedSortMethod, isSelectedBrand, volumeMin, volumeMax, lenght1Max, lenght2Max, lenght3Max, priceMin, priceMax, gpuLengthMin, gpuLengthMax, cpuHeightMin, cpuHeightMax, isSelectedMotherBoard, isSelectedFans, isSelectedLiquidCooling, isSelectedFrontIO, drives25, drives35, drives525, isSelectedSidePanel, isATXPowerOnly, fansInsideCountMin, fansInsideCountMax, isAllowVerticalGPU, isFanHubInside, isBackMotherboard, isTank){
     List<PcCase> list = [];
     for (int i = 0; i < allCases.length; i++) {
+      bool isShow = false;
       if((allCases[i].titles.toUpperCase()).contains(searchWord.toUpperCase())){
         if(brandNames.contains(allCases[i].brands)) {
           if(isSelectedBrand[brandNames.indexOf(allCases[i].brands)]) {
@@ -311,6 +312,7 @@ class _HomePageState extends State<HomePage> {
                                           if(!(isBackMotherboard && allCases[i].backMotherboard == 0)) {
                                             if(!(isTank && allCases[i].tank == 0)) {
                                               list.add(allCases[i]);
+                                              isShow = true;
                                             }
                                           }
                                         }
@@ -330,10 +332,8 @@ class _HomePageState extends State<HomePage> {
             }
           }
         }
-        else{
-          continue;
-        }
       }
+      //if(isShow == false) print(allCases[i].titles);
     }
     if(isSelectedSortMethod[0]){
       if(isSelectedSortMethod[2]){
