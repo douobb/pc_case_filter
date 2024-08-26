@@ -8,9 +8,6 @@ List<String> brandNames = [
   "Apexgaming",
   "SAMA",
   "銀欣",
-  "台鼎環球",
-  "樹昌",
-  "B-Team",
   "聯力",
   "酷碼",
   "Phanteks",
@@ -22,9 +19,7 @@ List<String> brandNames = [
   "視博通",
   "微星",
   "技嘉",
-  "亞碩",
   "旋剛",
-  "1st Player",
   "Antec",
   "BitFenix",
   "HYTE",
@@ -35,14 +30,11 @@ List<String> brandNames = [
   "迎廣",
   "SSUPD",
   "XPG",
-  "保銳",
   "海盜船",
   "海韻",
-  "i-CoolTw",
   "DEEPCOOL",
   "安耐美",
-  "YAMA",
-  "Mavoly"
+  "其他"
 ];
 
 class DrawerBrand extends StatefulWidget {
