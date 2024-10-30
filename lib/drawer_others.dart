@@ -5,6 +5,7 @@ late bool isFanHubInside;
 late bool isAllowVerticalGPU;
 late bool isBackMotherboard;
 late bool isTank;
+late bool isSilent;
 
 class DrawerOthers extends StatefulWidget {
   const DrawerOthers({super.key});
@@ -120,6 +121,23 @@ class _DrawerOthersState extends State<DrawerOthers> {
                   onChanged: (value){
                     setState(() {
                       isTank = !isTank;
+                    });
+                  }
+              ),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              Text("靜音機殼",style: TextStyle(fontSize: 18, color: textColor),),
+              Checkbox(
+                  side: BorderSide(color: textColor),
+                  activeColor: buttonColor,
+                  checkColor: primaryColor,
+                  value: isSilent,
+                  onChanged: (value){
+                    setState(() {
+                      isSilent = !isSilent;
                     });
                   }
               ),
