@@ -491,7 +491,7 @@ class _HomePageState extends State<HomePage> {
     for(int i = 0; i < filterCase.length; i++){
       t = "$t${filterCase[i].titles.split('/')[0]}...   \$${filterCase[i].price}\n";
     }
-    var now = new DateTime.now();
+    var now = DateTime.now();
     t = "$t\n取自：https://douobb.github.io/pc_case_filter/"
         "\n時間：${now.year.toString()}-${now.month.toString().padLeft(2,'0')}-${now.day.toString().padLeft(2,'0')} ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
     return t;
