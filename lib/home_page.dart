@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pc_case_filter/drawer_length.dart';
 import 'package:pc_case_filter/drawer_price.dart';
@@ -470,6 +471,32 @@ class _HomePageState extends State<HomePage> {
     return list;
   }
 
+  String createText() {
+    String t = "根據篩選條件已找到 ${filterCase.length} 個機殼，根據";
+    if(!isSelectedSortMethod[0] && !isSelectedSortMethod[1]){
+      t += "預設排序";
+    }else{
+      if(isSelectedSortMethod[0]){
+        t += "價格";
+      }else{
+        t += "容量";
+      }
+      if(isSelectedSortMethod[2]){
+        t += "升序";
+      }else{
+        t += "降序";
+      }
+    }
+    t += "列出：\n";
+    for(int i = 0; i < filterCase.length; i++){
+      t = "$t${filterCase[i].titles.split('/')[0]}...   \$${filterCase[i].price}\n";
+    }
+    var now = new DateTime.now();
+    t = "$t\n取自：https://douobb.github.io/pc_case_filter/"
+        "\n時間：${now.year.toString()}-${now.month.toString().padLeft(2,'0')}-${now.day.toString().padLeft(2,'0')} ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+    return t;
+  }
+
   @override
   void initState() {
     initAll();
@@ -566,6 +593,25 @@ class _HomePageState extends State<HomePage> {
               },
               tooltip: "移至頂端",
               child: Icon(Icons.arrow_upward, color: primaryColor),
+            ),
+            const SizedBox(height: 10,),
+            FloatingActionButton(
+              backgroundColor: highlightColor,
+              shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: createText()));
+                Fluttertoast.showToast(
+                    msg: "已複製滿足條件的機殼標題",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.TOP,
+                    timeInSecForIosWeb: 1,
+                    fontSize: 14.0,
+                    webBgColor: "linear-gradient(to right, #9a89c2, #9a89c2)",
+                    webPosition: "center"
+                );
+              },
+              tooltip: "複製標題",
+              child: Icon(Icons.copy, color: primaryColor),
             ),
             const SizedBox(height: 10,),
             FloatingActionButton(

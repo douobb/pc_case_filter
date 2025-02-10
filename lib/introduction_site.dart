@@ -68,6 +68,12 @@ class IntroductionSite extends StatelessWidget {
                         "而硬碟支援必須要機殼的支援硬碟數大於所輸入的數值才會顯示機殼。\n",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
                     const Text("* 邊長欄位的最長邊、次長邊、短邊不一定對應機殼的高、深、寬，實際情況請自行判斷。\n"
                         "* 硬碟支援欄位之間會有兼容問題，不一定能同時滿足所有需求，建議只在一個框內輸入數值，實際情況請自行判斷。",style: TextStyle(fontSize: 18, height: 1.5, color: Colors.deepOrange),),
+                    const SizedBox(height: 15,),
+                    Text("右下功能列表",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: buttonColor),),
+                    const Divider(),
+                    Text("網頁的右下角有三個功能按鍵，分別為移至頂端、複製標題以及原價屋網頁，"
+                        "複製標題功能會將篩選出來的所有機殼標題複製到剪貼簿中，"
+                        "原價屋網頁按鈕按下之後則為跳轉至原價屋機殼網頁。",style: TextStyle(fontSize: 18, height: 1.5, color: textColor),),
                   ],
                 ),
               ),
